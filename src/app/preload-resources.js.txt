@@ -1,0 +1,14 @@
+// "use client";
+
+// import ReactDOM from "react-dom";
+
+// export function PreloadResources() {
+//   ReactDOM.preload(
+//     "https://cdn.cloud.pspdfkit.com/pspdfkit-web@2024.4.0/pspdfkit.js",
+//     { as: "script" }
+//   );
+//   ReactDOM.preconnect("http://cdn.cloud.pspdfkit.com", { crossOrigin: "true" });
+//   ReactDOM.prefetchDNS("https://cdn.cloud.pspdfkit.com");
+
+//   return null;
+// }
