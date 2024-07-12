@@ -1,7 +1,6 @@
 "use client";
 
 import {useEffect, useRef, useState} from "react";
-import TextChanges from "./TextChanges";
 
 export default function Home() {
   const originalContainerRef = useRef(null);
