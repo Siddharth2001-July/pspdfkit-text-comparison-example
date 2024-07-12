@@ -36,4 +36,4 @@ yarn-error.log*
 next-env.d.ts
 
 # pspdfkit libraries
-/public/pspdfkit-lib
+#/public/pspdfkit-lib
