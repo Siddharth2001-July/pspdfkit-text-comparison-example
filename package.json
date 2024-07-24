@@ -6,18 +6,24 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "patch-package"
   },
   "dependencies": {
+    "@baseline-ui/core": "0.22.0",
+    "@baseline-ui/recipes": "0.22.0",
+    "@baseline-ui/tokens": "0.22.0",
     "next": "14.2.5",
+    "patch-package": "^8.0.0",
     "pspdfkit": "^2024.4.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "eslint": "^9.6.0",
+    "eslint": "^8.0.0",
     "eslint-config-next": "14.2.5",
     "postcss": "^8.4.39",
+    "postcss-import": "^16.1.0",
     "tailwindcss": "^3.4.4"
   }
 }

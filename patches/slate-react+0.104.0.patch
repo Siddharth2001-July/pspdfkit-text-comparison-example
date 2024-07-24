@@ -1,0 +1,2736 @@
+diff --git a/node_modules/slate-react/dist/index.es.js b/node_modules/slate-react/dist/index.es.js
+index 1594f44..86d7b8e 100644
+--- a/node_modules/slate-react/dist/index.es.js
++++ b/node_modules/slate-react/dist/index.es.js
+@@ -117,14 +117,14 @@ var IS_WECHATBROWSER = typeof navigator !== 'undefined' && /.*Wechat/.test(navig
+ // https://github.com/facebook/react/blob/master/packages/shared/ExecutionEnvironment.js
+ var CAN_USE_DOM = !!(typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined');
+ // Check if the browser is Safari and older than 17
+-var IS_SAFARI_LEGACY = typeof navigator !== 'undefined' && /Safari/.test(navigator.userAgent) && /Version\/(\d+)/.test(navigator.userAgent) && ((_navigator$userAgent$ = navigator.userAgent.match(/Version\/(\d+)/)) !== null && _navigator$userAgent$ !== void 0 && _navigator$userAgent$[1] ? parseInt((_navigator$userAgent$2 = navigator.userAgent.match(/Version\/(\d+)/)) === null || _navigator$userAgent$2 === void 0 ? void 0 : _navigator$userAgent$2[1], 10) < 17 : false);
++typeof navigator !== 'undefined' && /Safari/.test(navigator.userAgent) && /Version\/(\d+)/.test(navigator.userAgent) && ((_navigator$userAgent$ = navigator.userAgent.match(/Version\/(\d+)/)) !== null && _navigator$userAgent$ !== void 0 && _navigator$userAgent$[1] ? parseInt((_navigator$userAgent$2 = navigator.userAgent.match(/Version\/(\d+)/)) === null || _navigator$userAgent$2 === void 0 ? void 0 : _navigator$userAgent$2[1], 10) < 17 : false);
+ // COMPAT: Firefox/Edge Legacy don't support the `beforeinput` event
+ // Chrome Legacy doesn't support `beforeinput` correctly
+ var HAS_BEFORE_INPUT_SUPPORT = (!IS_CHROME_LEGACY || !IS_ANDROID_CHROME_LEGACY) && !IS_EDGE_LEGACY &&
+-// globalThis is undefined in older browsers
+-typeof globalThis !== 'undefined' && globalThis.InputEvent &&
+-// @ts-ignore The `getTargetRanges` property isn't recognized.
+-typeof globalThis.InputEvent.prototype.getTargetRanges === 'function';
++  // globalThis is undefined in older browsers
++  typeof globalThis !== 'undefined' && globalThis.InputEvent &&
++  // @ts-ignore The `getTargetRanges` property isn't recognized.
++  typeof globalThis.InputEvent.prototype.getTargetRanges === 'function';
+ 
+ /**
+  * Two weak maps that allow us rebuild a path given a node. They are populated
+@@ -598,9 +598,9 @@ var ReactEditor = {
+       return false;
+     }
+     return targetEl.closest("[data-slate-editor]") === editorEl && (!editable || targetEl.isContentEditable ? true : typeof targetEl.isContentEditable === 'boolean' &&
+-    // isContentEditable exists only on HTMLElement, and on other nodes it will be undefined
+-    // this is the core logic that lets you know you got the right editor.selection instead of null when editor is contenteditable="false"(readOnly)
+-    targetEl.closest('[contenteditable="false"]') === editorEl || !!targetEl.getAttribute('data-slate-zero-width'));
++      // isContentEditable exists only on HTMLElement, and on other nodes it will be undefined
++      // this is the core logic that lets you know you got the right editor.selection instead of null when editor is contenteditable="false"(readOnly)
++      targetEl.closest('[contenteditable="false"]') === editorEl || !!targetEl.getAttribute('data-slate-zero-width'));
+   },
+   hasEditableTarget: (editor, target) => isDOMNode(target) && ReactEditor.hasDOMNode(editor, target, {
+     editable: true
+@@ -677,12 +677,12 @@ var ReactEditor = {
+         var _nextText$textContent;
+         var domText = nextText.childNodes[0];
+         domPoint = [
+-        // COMPAT: If we don't explicity set the dom point to be on the actual
+-        // dom text element, chrome will put the selection behind the actual dom
+-        // text element, causing domRange.getBoundingClientRect() calls on a collapsed
+-        // selection to return incorrect zero values (https://bugs.chromium.org/p/chromium/issues/detail?id=435438)
+-        // which will cause issues when scrolling to it.
+-        domText instanceof DOMText ? domText : nextText, (_nextText$textContent = nextText.textContent) !== null && _nextText$textContent !== void 0 && _nextText$textContent.startsWith('\uFEFF') ? 1 : 0];
++          // COMPAT: If we don't explicity set the dom point to be on the actual
++          // dom text element, chrome will put the selection behind the actual dom
++          // text element, causing domRange.getBoundingClientRect() calls on a collapsed
++          // selection to return incorrect zero values (https://bugs.chromium.org/p/chromium/issues/detail?id=435438)
++          // which will cause issues when scrolling to it.
++          domText instanceof DOMText ? domText : nextText, (_nextText$textContent = nextText.textContent) !== null && _nextText$textContent !== void 0 && _nextText$textContent.startsWith('\uFEFF') ? 1 : 0];
+         break;
+       }
+       if (point.offset <= end) {
+@@ -806,19 +806,19 @@ var ReactEditor = {
+         }
+       }
+       if (domNode && offset === domNode.textContent.length &&
+-      // COMPAT: Android IMEs might remove the zero width space while composing,
+-      // and we don't add it for line-breaks.
+-      IS_ANDROID && domNode.getAttribute('data-slate-zero-width') === 'z' && (_domNode$textContent = domNode.textContent) !== null && _domNode$textContent !== void 0 && _domNode$textContent.startsWith('\uFEFF') && (
+-      // COMPAT: If the parent node is a Slate zero-width space, editor is
+-      // because the text node should have no characters. However, during IME
+-      // composition the ASCII characters will be prepended to the zero-width
+-      // space, so subtract 1 from the offset to account for the zero-width
+-      // space character.
+-      parentNode.hasAttribute('data-slate-zero-width') ||
+-      // COMPAT: In Firefox, `range.cloneContents()` returns an extra trailing '\n'
+-      // when the document ends with a new-line character. This results in the offset
+-      // length being off by one, so we need to subtract one to account for this.
+-      IS_FIREFOX && (_domNode$textContent2 = domNode.textContent) !== null && _domNode$textContent2 !== void 0 && _domNode$textContent2.endsWith('\n\n'))) {
++        // COMPAT: Android IMEs might remove the zero width space while composing,
++        // and we don't add it for line-breaks.
++        IS_ANDROID && domNode.getAttribute('data-slate-zero-width') === 'z' && (_domNode$textContent = domNode.textContent) !== null && _domNode$textContent !== void 0 && _domNode$textContent.startsWith('\uFEFF') && (
++          // COMPAT: If the parent node is a Slate zero-width space, editor is
++          // because the text node should have no characters. However, during IME
++          // composition the ASCII characters will be prepended to the zero-width
++          // space, so subtract 1 from the offset to account for the zero-width
++          // space character.
++          parentNode.hasAttribute('data-slate-zero-width') ||
++          // COMPAT: In Firefox, `range.cloneContents()` returns an extra trailing '\n'
++          // when the document ends with a new-line character. This results in the offset
++          // length being off by one, so we need to subtract one to account for this.
++          IS_FIREFOX && (_domNode$textContent2 = domNode.textContent) !== null && _domNode$textContent2 !== void 0 && _domNode$textContent2.endsWith('\n\n'))) {
+         offset--;
+       }
+     }
+@@ -1254,50 +1254,40 @@ function transformTextDiff(textDiff, op) {
+   } = textDiff;
+   switch (op.type) {
+     case 'insert_text':
+-      {
+-        if (!Path.equals(op.path, path) || op.offset >= diff.end) {
+-          return textDiff;
+-        }
+-        if (op.offset <= diff.start) {
+-          return {
+-            diff: {
+-              start: op.text.length + diff.start,
+-              end: op.text.length + diff.end,
+-              text: diff.text
+-            },
+-            id,
+-            path
+-          };
+-        }
++    {
++      if (!Path.equals(op.path, path) || op.offset >= diff.end) {
++        return textDiff;
++      }
++      if (op.offset <= diff.start) {
+         return {
+           diff: {
+-            start: diff.start,
+-            end: diff.end + op.text.length,
++            start: op.text.length + diff.start,
++            end: op.text.length + diff.end,
+             text: diff.text
+           },
+           id,
+           path
+         };
+       }
++      return {
++        diff: {
++          start: diff.start,
++          end: diff.end + op.text.length,
++          text: diff.text
++        },
++        id,
++        path
++      };
++    }
+     case 'remove_text':
+-      {
+-        if (!Path.equals(op.path, path) || op.offset >= diff.end) {
+-          return textDiff;
+-        }
+-        if (op.offset + op.text.length <= diff.start) {
+-          return {
+-            diff: {
+-              start: diff.start - op.text.length,
+-              end: diff.end - op.text.length,
+-              text: diff.text
+-            },
+-            id,
+-            path
+-          };
+-        }
++    {
++      if (!Path.equals(op.path, path) || op.offset >= diff.end) {
++        return textDiff;
++      }
++      if (op.offset + op.text.length <= diff.start) {
+         return {
+           diff: {
+-            start: diff.start,
++            start: diff.start - op.text.length,
+             end: diff.end - op.text.length,
+             text: diff.text
+           },
+@@ -1305,59 +1295,69 @@ function transformTextDiff(textDiff, op) {
+           path
+         };
+       }
++      return {
++        diff: {
++          start: diff.start,
++          end: diff.end - op.text.length,
++          text: diff.text
++        },
++        id,
++        path
++      };
++    }
+     case 'split_node':
+-      {
+-        if (!Path.equals(op.path, path) || op.position >= diff.end) {
+-          return {
+-            diff,
+-            id,
+-            path: Path.transform(path, op, {
+-              affinity: 'backward'
+-            })
+-          };
+-        }
+-        if (op.position > diff.start) {
+-          return {
+-            diff: {
+-              start: diff.start,
+-              end: Math.min(op.position, diff.end),
+-              text: diff.text
+-            },
+-            id,
+-            path
+-          };
+-        }
++    {
++      if (!Path.equals(op.path, path) || op.position >= diff.end) {
+         return {
+-          diff: {
+-            start: diff.start - op.position,
+-            end: diff.end - op.position,
+-            text: diff.text
+-          },
++          diff,
+           id,
+           path: Path.transform(path, op, {
+-            affinity: 'forward'
++            affinity: 'backward'
+           })
+         };
+       }
+-    case 'merge_node':
+-      {
+-        if (!Path.equals(op.path, path)) {
+-          return {
+-            diff,
+-            id,
+-            path: Path.transform(path, op)
+-          };
+-        }
++      if (op.position > diff.start) {
+         return {
+           diff: {
+-            start: diff.start + op.position,
+-            end: diff.end + op.position,
++            start: diff.start,
++            end: Math.min(op.position, diff.end),
+             text: diff.text
+           },
+           id,
++          path
++        };
++      }
++      return {
++        diff: {
++          start: diff.start - op.position,
++          end: diff.end - op.position,
++          text: diff.text
++        },
++        id,
++        path: Path.transform(path, op, {
++          affinity: 'forward'
++        })
++      };
++    }
++    case 'merge_node':
++    {
++      if (!Path.equals(op.path, path)) {
++        return {
++          diff,
++          id,
+           path: Path.transform(path, op)
+         };
+       }
++      return {
++        diff: {
++          start: diff.start + op.position,
++          end: diff.end + op.position,
++          text: diff.text
++        },
++        id,
++        path: Path.transform(path, op)
++      };
++    }
+   }
+   var newPath = Path.transform(path, op);
+   if (!newPath) {
+@@ -1693,125 +1693,125 @@ function createAndroidInputManager(_ref) {
+       case 'deleteByComposition':
+       case 'deleteByCut':
+       case 'deleteByDrag':
+-        {
+-          return scheduleAction(() => Editor.deleteFragment(editor), {
+-            at: targetRange
+-          });
+-        }
++      {
++        return scheduleAction(() => Editor.deleteFragment(editor), {
++          at: targetRange
++        });
++      }
+       case 'deleteContent':
+       case 'deleteContentForward':
+-        {
+-          var {
+-            anchor
+-          } = targetRange;
+-          if (canStoreDiff && Range.isCollapsed(targetRange)) {
+-            var targetNode = Node.leaf(editor, anchor.path);
+-            if (anchor.offset < targetNode.text.length) {
+-              return storeDiff(anchor.path, {
+-                text: '',
+-                start: anchor.offset,
+-                end: anchor.offset + 1
+-              });
+-            }
+-          }
+-          return scheduleAction(() => Editor.deleteForward(editor), {
+-            at: targetRange
+-          });
+-        }
+-      case 'deleteContentBackward':
+-        {
+-          var _nativeTargetRange;
+-          var {
+-            anchor: _anchor
+-          } = targetRange;
+-          // If we have a mismatch between the native and slate selection being collapsed
+-          // we are most likely deleting a zero-width placeholder and thus should perform it
+-          // as an action to ensure correct behavior (mostly happens with mark placeholders)
+-          var nativeCollapsed = isDOMSelection(nativeTargetRange) ? nativeTargetRange.isCollapsed : !!((_nativeTargetRange = nativeTargetRange) !== null && _nativeTargetRange !== void 0 && _nativeTargetRange.collapsed);
+-          if (canStoreDiff && nativeCollapsed && Range.isCollapsed(targetRange) && _anchor.offset > 0) {
+-            return storeDiff(_anchor.path, {
++      {
++        var {
++          anchor
++        } = targetRange;
++        if (canStoreDiff && Range.isCollapsed(targetRange)) {
++          var targetNode = Node.leaf(editor, anchor.path);
++          if (anchor.offset < targetNode.text.length) {
++            return storeDiff(anchor.path, {
+               text: '',
+-              start: _anchor.offset - 1,
+-              end: _anchor.offset
++              start: anchor.offset,
++              end: anchor.offset + 1
+             });
+           }
+-          return scheduleAction(() => Editor.deleteBackward(editor), {
+-            at: targetRange
+-          });
+         }
+-      case 'deleteEntireSoftLine':
+-        {
+-          return scheduleAction(() => {
+-            Editor.deleteBackward(editor, {
+-              unit: 'line'
+-            });
+-            Editor.deleteForward(editor, {
+-              unit: 'line'
+-            });
+-          }, {
+-            at: targetRange
++        return scheduleAction(() => Editor.deleteForward(editor), {
++          at: targetRange
++        });
++      }
++      case 'deleteContentBackward':
++      {
++        var _nativeTargetRange;
++        var {
++          anchor: _anchor
++        } = targetRange;
++        // If we have a mismatch between the native and slate selection being collapsed
++        // we are most likely deleting a zero-width placeholder and thus should perform it
++        // as an action to ensure correct behavior (mostly happens with mark placeholders)
++        var nativeCollapsed = isDOMSelection(nativeTargetRange) ? nativeTargetRange.isCollapsed : !!((_nativeTargetRange = nativeTargetRange) !== null && _nativeTargetRange !== void 0 && _nativeTargetRange.collapsed);
++        if (canStoreDiff && nativeCollapsed && Range.isCollapsed(targetRange) && _anchor.offset > 0) {
++          return storeDiff(_anchor.path, {
++            text: '',
++            start: _anchor.offset - 1,
++            end: _anchor.offset
+           });
+         }
+-      case 'deleteHardLineBackward':
+-        {
+-          return scheduleAction(() => Editor.deleteBackward(editor, {
+-            unit: 'block'
+-          }), {
+-            at: targetRange
++        return scheduleAction(() => Editor.deleteBackward(editor), {
++          at: targetRange
++        });
++      }
++      case 'deleteEntireSoftLine':
++      {
++        return scheduleAction(() => {
++          Editor.deleteBackward(editor, {
++            unit: 'line'
+           });
+-        }
+-      case 'deleteSoftLineBackward':
+-        {
+-          return scheduleAction(() => Editor.deleteBackward(editor, {
++          Editor.deleteForward(editor, {
+             unit: 'line'
+-          }), {
+-            at: targetRange
+           });
+-        }
++        }, {
++          at: targetRange
++        });
++      }
++      case 'deleteHardLineBackward':
++      {
++        return scheduleAction(() => Editor.deleteBackward(editor, {
++          unit: 'block'
++        }), {
++          at: targetRange
++        });
++      }
++      case 'deleteSoftLineBackward':
++      {
++        return scheduleAction(() => Editor.deleteBackward(editor, {
++          unit: 'line'
++        }), {
++          at: targetRange
++        });
++      }
+       case 'deleteHardLineForward':
+-        {
+-          return scheduleAction(() => Editor.deleteForward(editor, {
+-            unit: 'block'
+-          }), {
+-            at: targetRange
+-          });
+-        }
++      {
++        return scheduleAction(() => Editor.deleteForward(editor, {
++          unit: 'block'
++        }), {
++          at: targetRange
++        });
++      }
+       case 'deleteSoftLineForward':
+-        {
+-          return scheduleAction(() => Editor.deleteForward(editor, {
+-            unit: 'line'
+-          }), {
+-            at: targetRange
+-          });
+-        }
++      {
++        return scheduleAction(() => Editor.deleteForward(editor, {
++          unit: 'line'
++        }), {
++          at: targetRange
++        });
++      }
+       case 'deleteWordBackward':
+-        {
+-          return scheduleAction(() => Editor.deleteBackward(editor, {
+-            unit: 'word'
+-          }), {
+-            at: targetRange
+-          });
+-        }
++      {
++        return scheduleAction(() => Editor.deleteBackward(editor, {
++          unit: 'word'
++        }), {
++          at: targetRange
++        });
++      }
+       case 'deleteWordForward':
+-        {
+-          return scheduleAction(() => Editor.deleteForward(editor, {
+-            unit: 'word'
+-          }), {
+-            at: targetRange
+-          });
+-        }
++      {
++        return scheduleAction(() => Editor.deleteForward(editor, {
++          unit: 'word'
++        }), {
++          at: targetRange
++        });
++      }
+       case 'insertLineBreak':
+-        {
+-          return scheduleAction(() => Editor.insertSoftBreak(editor), {
+-            at: targetRange
+-          });
+-        }
++      {
++        return scheduleAction(() => Editor.insertSoftBreak(editor), {
++          at: targetRange
++        });
++      }
+       case 'insertParagraph':
+-        {
+-          return scheduleAction(() => Editor.insertBreak(editor), {
+-            at: targetRange
+-          });
+-        }
++      {
++        return scheduleAction(() => Editor.insertBreak(editor), {
++          at: targetRange
++        });
++      }
+       case 'insertCompositionText':
+       case 'deleteCompositionText':
+       case 'insertFromComposition':
+@@ -1820,86 +1820,86 @@ function createAndroidInputManager(_ref) {
+       case 'insertFromYank':
+       case 'insertReplacementText':
+       case 'insertText':
+-        {
+-          if (isDataTransfer(data)) {
+-            return scheduleAction(() => ReactEditor.insertData(editor, data), {
+-              at: targetRange
+-            });
+-          }
+-          var _text = data !== null && data !== void 0 ? data : '';
+-          // COMPAT: If we are writing inside a placeholder, the ime inserts the text inside
+-          // the placeholder itself and thus includes the zero-width space inside edit events.
+-          if (EDITOR_TO_PENDING_INSERTION_MARKS.get(editor)) {
+-            _text = _text.replace('\uFEFF', '');
+-          }
+-          // Pastes from the Android clipboard will generate `insertText` events.
+-          // If the copied text contains any newlines, Android will append an
+-          // extra newline to the end of the copied text.
+-          if (type === 'insertText' && /.*\n.*\n$/.test(_text)) {
+-            _text = _text.slice(0, -1);
+-          }
+-          // If the text includes a newline, split it at newlines and paste each component
+-          // string, with soft breaks in between each.
+-          if (_text.includes('\n')) {
+-            return scheduleAction(() => {
+-              var parts = _text.split('\n');
+-              parts.forEach((line, i) => {
+-                if (line) {
+-                  Editor.insertText(editor, line);
+-                }
+-                if (i !== parts.length - 1) {
+-                  Editor.insertSoftBreak(editor);
+-                }
+-              });
+-            }, {
+-              at: targetRange
+-            });
+-          }
+-          if (Path.equals(targetRange.anchor.path, targetRange.focus.path)) {
+-            var [_start2, _end2] = Range.edges(targetRange);
+-            var _diff = {
+-              start: _start2.offset,
+-              end: _end2.offset,
+-              text: _text
+-            };
+-            // COMPAT: Swiftkey has a weird bug where the target range of the 2nd word
+-            // inserted after a mark placeholder is inserted with an anchor offset off by 1.
+-            // So writing 'some text' will result in 'some ttext'. Luckily all 'normal' insert
+-            // text events are fired with the correct target ranges, only the final 'insertComposition'
+-            // isn't, so we can adjust the target range start offset if we are confident this is the
+-            // swiftkey insert causing the issue.
+-            if (_text && insertPositionHint && type === 'insertCompositionText') {
+-              var hintPosition = insertPositionHint.start + insertPositionHint.text.search(/\S|$/);
+-              var diffPosition = _diff.start + _diff.text.search(/\S|$/);
+-              if (diffPosition === hintPosition + 1 && _diff.end === insertPositionHint.start + insertPositionHint.text.length) {
+-                _diff.start -= 1;
+-                insertPositionHint = null;
+-                scheduleFlush();
+-              } else {
+-                insertPositionHint = false;
++      {
++        if (isDataTransfer(data)) {
++          return scheduleAction(() => ReactEditor.insertData(editor, data), {
++            at: targetRange
++          });
++        }
++        var _text = data !== null && data !== void 0 ? data : '';
++        // COMPAT: If we are writing inside a placeholder, the ime inserts the text inside
++        // the placeholder itself and thus includes the zero-width space inside edit events.
++        if (EDITOR_TO_PENDING_INSERTION_MARKS.get(editor)) {
++          _text = _text.replace('\uFEFF', '');
++        }
++        // Pastes from the Android clipboard will generate `insertText` events.
++        // If the copied text contains any newlines, Android will append an
++        // extra newline to the end of the copied text.
++        if (type === 'insertText' && /.*\n.*\n$/.test(_text)) {
++          _text = _text.slice(0, -1);
++        }
++        // If the text includes a newline, split it at newlines and paste each component
++        // string, with soft breaks in between each.
++        if (_text.includes('\n')) {
++          return scheduleAction(() => {
++            var parts = _text.split('\n');
++            parts.forEach((line, i) => {
++              if (line) {
++                Editor.insertText(editor, line);
+               }
+-            } else if (type === 'insertText') {
+-              if (insertPositionHint === null) {
+-                insertPositionHint = _diff;
+-              } else if (insertPositionHint && Range.isCollapsed(targetRange) && insertPositionHint.end + insertPositionHint.text.length === _start2.offset) {
+-                insertPositionHint = _objectSpread$6(_objectSpread$6({}, insertPositionHint), {}, {
+-                  text: insertPositionHint.text + _text
+-                });
+-              } else {
+-                insertPositionHint = false;
++              if (i !== parts.length - 1) {
++                Editor.insertSoftBreak(editor);
+               }
++            });
++          }, {
++            at: targetRange
++          });
++        }
++        if (Path.equals(targetRange.anchor.path, targetRange.focus.path)) {
++          var [_start2, _end2] = Range.edges(targetRange);
++          var _diff = {
++            start: _start2.offset,
++            end: _end2.offset,
++            text: _text
++          };
++          // COMPAT: Swiftkey has a weird bug where the target range of the 2nd word
++          // inserted after a mark placeholder is inserted with an anchor offset off by 1.
++          // So writing 'some text' will result in 'some ttext'. Luckily all 'normal' insert
++          // text events are fired with the correct target ranges, only the final 'insertComposition'
++          // isn't, so we can adjust the target range start offset if we are confident this is the
++          // swiftkey insert causing the issue.
++          if (_text && insertPositionHint && type === 'insertCompositionText') {
++            var hintPosition = insertPositionHint.start + insertPositionHint.text.search(/\S|$/);
++            var diffPosition = _diff.start + _diff.text.search(/\S|$/);
++            if (diffPosition === hintPosition + 1 && _diff.end === insertPositionHint.start + insertPositionHint.text.length) {
++              _diff.start -= 1;
++              insertPositionHint = null;
++              scheduleFlush();
+             } else {
+               insertPositionHint = false;
+             }
+-            if (canStoreDiff) {
+-              storeDiff(_start2.path, _diff);
+-              return;
++          } else if (type === 'insertText') {
++            if (insertPositionHint === null) {
++              insertPositionHint = _diff;
++            } else if (insertPositionHint && Range.isCollapsed(targetRange) && insertPositionHint.end + insertPositionHint.text.length === _start2.offset) {
++              insertPositionHint = _objectSpread$6(_objectSpread$6({}, insertPositionHint), {}, {
++                text: insertPositionHint.text + _text
++              });
++            } else {
++              insertPositionHint = false;
+             }
++          } else {
++            insertPositionHint = false;
++          }
++          if (canStoreDiff) {
++            storeDiff(_start2.path, _diff);
++            return;
+           }
+-          return scheduleAction(() => Editor.insertText(editor, _text), {
+-            at: targetRange
+-          });
+         }
++        return scheduleAction(() => Editor.insertText(editor, _text), {
++          at: targetRange
++        });
++      }
+     }
+   };
+   var hasPendingAction = () => {
+@@ -2206,7 +2206,7 @@ var ZeroWidthString = props => {
+   if (isMarkPlaceholder) {
+     attributes['data-slate-mark-placeholder'] = true;
+   }
+-  return /*#__PURE__*/React.createElement("span", _objectSpread$4({}, attributes), !IS_ANDROID || !isLineBreak ? '\uFEFF' : null, isLineBreak ? /*#__PURE__*/React.createElement("br", null) : null);
++  return /*#__PURE__*/React.createElement("span", _objectSpread$4({}, attributes), !(IS_ANDROID || IS_IOS) || !isLineBreak ? '\uFEFF' : null, isLineBreak ? /*#__PURE__*/React.createElement("br", null) : null);
+ };
+ 
+ function ownKeys$3(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+@@ -2897,7 +2897,7 @@ var Editable = props => {
+   var onDOMSelectionChange = useMemo(() => throttle(() => {
+     var el = ReactEditor.toDOMNode(editor, editor);
+     var root = el.getRootNode();
+-    if (IS_SAFARI_LEGACY && !processing.current && IS_WEBKIT && root instanceof ShadowRoot) {
++    if (!processing.current && IS_WEBKIT && root instanceof ShadowRoot) {
+       processing.current = true;
+       var active = getActiveElement();
+       if (active) {
+@@ -3105,7 +3105,7 @@ var Editable = props => {
+   var onDOMBeforeInput = useCallback(event => {
+     var el = ReactEditor.toDOMNode(editor, editor);
+     var root = el.getRootNode();
+-    if (IS_SAFARI_LEGACY && processing !== null && processing !== void 0 && processing.current && IS_WEBKIT && root instanceof ShadowRoot) {
++    if (processing !== null && processing !== void 0 && processing.current && IS_WEBKIT && root instanceof ShadowRoot) {
+       var ranges = event.getTargetRanges();
+       var range = ranges[0];
+       var newRange = new window.Range();
+@@ -3148,14 +3148,14 @@ var Editable = props => {
+       }
+       var native = false;
+       if (type === 'insertText' && selection && Range.isCollapsed(selection) &&
+-      // Only use native character insertion for single characters a-z or space for now.
+-      // Long-press events (hold a + press 4 = ä) to choose a special character otherwise
+-      // causes duplicate inserts.
+-      event.data && event.data.length === 1 && /[a-z ]/i.test(event.data) &&
+-      // Chrome has issues correctly editing the start of nodes: https://bugs.chromium.org/p/chromium/issues/detail?id=1249405
+-      // When there is an inline element, e.g. a link, and you select
+-      // right after it (the start of the next node).
+-      selection.anchor.offset !== 0) {
++        // Only use native character insertion for single characters a-z or space for now.
++        // Long-press events (hold a + press 4 = ä) to choose a special character otherwise
++        // causes duplicate inserts.
++        event.data && event.data.length === 1 && /[a-z ]/i.test(event.data) &&
++        // Chrome has issues correctly editing the start of nodes: https://bugs.chromium.org/p/chromium/issues/detail?id=1249405
++        // When there is an inline element, e.g. a link, and you select
++        // right after it (the start of the next node).
++        selection.anchor.offset !== 0) {
+         var _node$parentElement, _window$getComputedSt;
+         native = true;
+         // Skip native if there are marks, as
+@@ -3232,115 +3232,115 @@ var Editable = props => {
+         case 'deleteByComposition':
+         case 'deleteByCut':
+         case 'deleteByDrag':
+-          {
+-            Editor.deleteFragment(editor);
+-            break;
+-          }
++        {
++          Editor.deleteFragment(editor);
++          break;
++        }
+         case 'deleteContent':
+         case 'deleteContentForward':
+-          {
+-            Editor.deleteForward(editor);
+-            break;
+-          }
++        {
++          Editor.deleteForward(editor);
++          break;
++        }
+         case 'deleteContentBackward':
+-          {
+-            Editor.deleteBackward(editor);
+-            break;
+-          }
++        {
++          Editor.deleteBackward(editor);
++          break;
++        }
+         case 'deleteEntireSoftLine':
+-          {
+-            Editor.deleteBackward(editor, {
+-              unit: 'line'
+-            });
+-            Editor.deleteForward(editor, {
+-              unit: 'line'
+-            });
+-            break;
+-          }
++        {
++          Editor.deleteBackward(editor, {
++            unit: 'line'
++          });
++          Editor.deleteForward(editor, {
++            unit: 'line'
++          });
++          break;
++        }
+         case 'deleteHardLineBackward':
+-          {
+-            Editor.deleteBackward(editor, {
+-              unit: 'block'
+-            });
+-            break;
+-          }
++        {
++          Editor.deleteBackward(editor, {
++            unit: 'block'
++          });
++          break;
++        }
+         case 'deleteSoftLineBackward':
+-          {
+-            Editor.deleteBackward(editor, {
+-              unit: 'line'
+-            });
+-            break;
+-          }
++        {
++          Editor.deleteBackward(editor, {
++            unit: 'line'
++          });
++          break;
++        }
+         case 'deleteHardLineForward':
+-          {
+-            Editor.deleteForward(editor, {
+-              unit: 'block'
+-            });
+-            break;
+-          }
++        {
++          Editor.deleteForward(editor, {
++            unit: 'block'
++          });
++          break;
++        }
+         case 'deleteSoftLineForward':
+-          {
+-            Editor.deleteForward(editor, {
+-              unit: 'line'
+-            });
+-            break;
+-          }
++        {
++          Editor.deleteForward(editor, {
++            unit: 'line'
++          });
++          break;
++        }
+         case 'deleteWordBackward':
+-          {
+-            Editor.deleteBackward(editor, {
+-              unit: 'word'
+-            });
+-            break;
+-          }
++        {
++          Editor.deleteBackward(editor, {
++            unit: 'word'
++          });
++          break;
++        }
+         case 'deleteWordForward':
+-          {
+-            Editor.deleteForward(editor, {
+-              unit: 'word'
+-            });
+-            break;
+-          }
++        {
++          Editor.deleteForward(editor, {
++            unit: 'word'
++          });
++          break;
++        }
+         case 'insertLineBreak':
+           Editor.insertSoftBreak(editor);
+           break;
+         case 'insertParagraph':
+-          {
+-            Editor.insertBreak(editor);
+-            break;
+-          }
++        {
++          Editor.insertBreak(editor);
++          break;
++        }
+         case 'insertFromComposition':
+         case 'insertFromDrop':
+         case 'insertFromPaste':
+         case 'insertFromYank':
+         case 'insertReplacementText':
+         case 'insertText':
+-          {
+-            if (type === 'insertFromComposition') {
+-              // COMPAT: in Safari, `compositionend` is dispatched after the
+-              // `beforeinput` for "insertFromComposition". But if we wait for it
+-              // then we will abort because we're still composing and the selection
+-              // won't be updated properly.
+-              // https://www.w3.org/TR/input-events-2/
+-              if (ReactEditor.isComposing(editor)) {
+-                setIsComposing(false);
+-                IS_COMPOSING.set(editor, false);
+-              }
++        {
++          if (type === 'insertFromComposition') {
++            // COMPAT: in Safari, `compositionend` is dispatched after the
++            // `beforeinput` for "insertFromComposition". But if we wait for it
++            // then we will abort because we're still composing and the selection
++            // won't be updated properly.
++            // https://www.w3.org/TR/input-events-2/
++            if (ReactEditor.isComposing(editor)) {
++              setIsComposing(false);
++              IS_COMPOSING.set(editor, false);
+             }
+-            // use a weak comparison instead of 'instanceof' to allow
+-            // programmatic access of paste events coming from external windows
+-            // like cypress where cy.window does not work realibly
+-            if ((data === null || data === void 0 ? void 0 : data.constructor.name) === 'DataTransfer') {
+-              ReactEditor.insertData(editor, data);
+-            } else if (typeof data === 'string') {
+-              // Only insertText operations use the native functionality, for now.
+-              // Potentially expand to single character deletes, as well.
+-              if (native) {
+-                deferredOperations.current.push(() => Editor.insertText(editor, data));
+-              } else {
+-                Editor.insertText(editor, data);
+-              }
++          }
++          // use a weak comparison instead of 'instanceof' to allow
++          // programmatic access of paste events coming from external windows
++          // like cypress where cy.window does not work realibly
++          if ((data === null || data === void 0 ? void 0 : data.constructor.name) === 'DataTransfer') {
++            ReactEditor.insertData(editor, data);
++          } else if (typeof data === 'string') {
++            // Only insertText operations use the native functionality, for now.
++            // Potentially expand to single character deletes, as well.
++            if (native) {
++              deferredOperations.current.push(() => Editor.insertText(editor, data));
++            } else {
++              Editor.insertText(editor, data);
+             }
+-            break;
+           }
++          break;
++        }
+       }
+       // Restore the actual user section if nothing manually set it.
+       var toRestore = (_EDITOR_TO_USER_SELEC = EDITOR_TO_USER_SELECTION.get(editor)) === null || _EDITOR_TO_USER_SELEC === void 0 ? void 0 : _EDITOR_TO_USER_SELEC.unref();
+@@ -4177,32 +4177,32 @@ function useSlateSelector(selector) {
+     latestSubscriptionCallbackError.current = undefined;
+   });
+   useIsomorphicLayoutEffect(() => {
+-    function checkForUpdates() {
+-      try {
+-        var newSelectedState = latestSelector.current(getSlate());
+-        if (equalityFn(newSelectedState, latestSelectedState.current)) {
+-          return;
+-        }
+-        latestSelectedState.current = newSelectedState;
+-      } catch (err) {
+-        // we ignore all errors here, since when the component
+-        // is re-rendered, the selectors are called again, and
+-        // will throw again, if neither props nor store state
+-        // changed
+-        if (err instanceof Error) {
+-          latestSubscriptionCallbackError.current = err;
+-        } else {
+-          latestSubscriptionCallbackError.current = new Error(String(err));
++      function checkForUpdates() {
++        try {
++          var newSelectedState = latestSelector.current(getSlate());
++          if (equalityFn(newSelectedState, latestSelectedState.current)) {
++            return;
++          }
++          latestSelectedState.current = newSelectedState;
++        } catch (err) {
++          // we ignore all errors here, since when the component
++          // is re-rendered, the selectors are called again, and
++          // will throw again, if neither props nor store state
++          // changed
++          if (err instanceof Error) {
++            latestSubscriptionCallbackError.current = err;
++          } else {
++            latestSubscriptionCallbackError.current = new Error(String(err));
++          }
+         }
++        forceRender();
+       }
+-      forceRender();
+-    }
+-    var unsubscribe = addEventListener(checkForUpdates);
+-    checkForUpdates();
+-    return () => unsubscribe();
+-  },
+-  // don't rerender on equalityFn change since we want to be able to define it inline
+-  [addEventListener, getSlate]);
++      var unsubscribe = addEventListener(checkForUpdates);
++      checkForUpdates();
++      return () => unsubscribe();
++    },
++    // don't rerender on equalityFn change since we want to be able to define it inline
++    [addEventListener, getSlate]);
+   return selectedState;
+ }
+ /**
+@@ -4488,48 +4488,48 @@ var withReact = function withReact(editor) {
+       case 'remove_text':
+       case 'set_node':
+       case 'split_node':
+-        {
+-          matches.push(...getMatches(e, op.path));
+-          break;
+-        }
++      {
++        matches.push(...getMatches(e, op.path));
++        break;
++      }
+       case 'set_selection':
+-        {
+-          var _EDITOR_TO_USER_SELEC;
+-          // Selection was manually set, don't restore the user selection after the change.
+-          (_EDITOR_TO_USER_SELEC = EDITOR_TO_USER_SELECTION.get(e)) === null || _EDITOR_TO_USER_SELEC === void 0 || _EDITOR_TO_USER_SELEC.unref();
+-          EDITOR_TO_USER_SELECTION.delete(e);
+-          break;
+-        }
++      {
++        var _EDITOR_TO_USER_SELEC;
++        // Selection was manually set, don't restore the user selection after the change.
++        (_EDITOR_TO_USER_SELEC = EDITOR_TO_USER_SELECTION.get(e)) === null || _EDITOR_TO_USER_SELEC === void 0 || _EDITOR_TO_USER_SELEC.unref();
++        EDITOR_TO_USER_SELECTION.delete(e);
++        break;
++      }
+       case 'insert_node':
+       case 'remove_node':
+-        {
+-          matches.push(...getMatches(e, Path.parent(op.path)));
+-          break;
+-        }
++      {
++        matches.push(...getMatches(e, Path.parent(op.path)));
++        break;
++      }
+       case 'merge_node':
+-        {
+-          var prevPath = Path.previous(op.path);
+-          matches.push(...getMatches(e, prevPath));
+-          break;
+-        }
++      {
++        var prevPath = Path.previous(op.path);
++        matches.push(...getMatches(e, prevPath));
++        break;
++      }
+       case 'move_node':
+-        {
+-          var commonPath = Path.common(Path.parent(op.path), Path.parent(op.newPath));
+-          matches.push(...getMatches(e, commonPath));
+-          var changedPath;
+-          if (Path.isBefore(op.path, op.newPath)) {
+-            matches.push(...getMatches(e, Path.parent(op.path)));
+-            changedPath = op.newPath;
+-          } else {
+-            matches.push(...getMatches(e, Path.parent(op.newPath)));
+-            changedPath = op.path;
+-          }
+-          var changedNode = Node.get(editor, Path.parent(changedPath));
+-          var changedNodeKey = ReactEditor.findKey(e, changedNode);
+-          var changedPathRef = Editor.pathRef(e, Path.parent(changedPath));
+-          pathRefMatches.push([changedPathRef, changedNodeKey]);
+-          break;
++      {
++        var commonPath = Path.common(Path.parent(op.path), Path.parent(op.newPath));
++        matches.push(...getMatches(e, commonPath));
++        var changedPath;
++        if (Path.isBefore(op.path, op.newPath)) {
++          matches.push(...getMatches(e, Path.parent(op.path)));
++          changedPath = op.newPath;
++        } else {
++          matches.push(...getMatches(e, Path.parent(op.newPath)));
++          changedPath = op.path;
+         }
++        var changedNode = Node.get(editor, Path.parent(changedPath));
++        var changedNodeKey = ReactEditor.findKey(e, changedNode);
++        var changedPathRef = Editor.pathRef(e, Path.parent(changedPath));
++        pathRefMatches.push([changedPathRef, changedNodeKey]);
++        break;
++      }
+     }
+     apply(op);
+     for (var [path, key] of matches) {
+diff --git a/node_modules/slate-react/dist/index.js b/node_modules/slate-react/dist/index.js
+index 373306c..679d020 100644
+--- a/node_modules/slate-react/dist/index.js
++++ b/node_modules/slate-react/dist/index.js
+@@ -11,197 +11,197 @@ var isHotkey = require('is-hotkey');
+ var ReactDOM = require('react-dom');
+ 
+ function unwrapExports (x) {
+-	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
++  return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+ }
+ 
+ function createCommonjsModule(fn, module) {
+-	return module = { exports: {} }, fn(module, module.exports), module.exports;
++  return module = { exports: {} }, fn(module, module.exports), module.exports;
+ }
+ 
+ var arrayWithHoles = createCommonjsModule(function (module) {
+-function _arrayWithHoles(arr) {
+-  if (Array.isArray(arr)) return arr;
+-}
+-module.exports = _arrayWithHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  function _arrayWithHoles(arr) {
++    if (Array.isArray(arr)) return arr;
++  }
++  module.exports = _arrayWithHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ unwrapExports(arrayWithHoles);
+ 
+ var iterableToArrayLimit = createCommonjsModule(function (module) {
+-function _iterableToArrayLimit(r, l) {
+-  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+-  if (null != t) {
+-    var e,
+-      n,
+-      i,
+-      u,
+-      a = [],
+-      f = !0,
+-      o = !1;
+-    try {
+-      if (i = (t = t.call(r)).next, 0 === l) {
+-        if (Object(t) !== t) return;
+-        f = !1;
+-      } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
+-    } catch (r) {
+-      o = !0, n = r;
+-    } finally {
++  function _iterableToArrayLimit(r, l) {
++    var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
++    if (null != t) {
++      var e,
++        n,
++        i,
++        u,
++        a = [],
++        f = !0,
++        o = !1;
+       try {
+-        if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return;
++        if (i = (t = t.call(r)).next, 0 === l) {
++          if (Object(t) !== t) return;
++          f = !1;
++        } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
++      } catch (r) {
++        o = !0, n = r;
+       } finally {
+-        if (o) throw n;
++        try {
++          if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return;
++        } finally {
++          if (o) throw n;
++        }
+       }
++      return a;
+     }
+-    return a;
+   }
+-}
+-module.exports = _iterableToArrayLimit, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  module.exports = _iterableToArrayLimit, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ unwrapExports(iterableToArrayLimit);
+ 
+ var arrayLikeToArray = createCommonjsModule(function (module) {
+-function _arrayLikeToArray(arr, len) {
+-  if (len == null || len > arr.length) len = arr.length;
+-  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+-  return arr2;
+-}
+-module.exports = _arrayLikeToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  function _arrayLikeToArray(arr, len) {
++    if (len == null || len > arr.length) len = arr.length;
++    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
++    return arr2;
++  }
++  module.exports = _arrayLikeToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ unwrapExports(arrayLikeToArray);
+ 
+ var unsupportedIterableToArray = createCommonjsModule(function (module) {
+-function _unsupportedIterableToArray(o, minLen) {
+-  if (!o) return;
+-  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+-  var n = Object.prototype.toString.call(o).slice(8, -1);
+-  if (n === "Object" && o.constructor) n = o.constructor.name;
+-  if (n === "Map" || n === "Set") return Array.from(o);
+-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+-}
+-module.exports = _unsupportedIterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  function _unsupportedIterableToArray(o, minLen) {
++    if (!o) return;
++    if (typeof o === "string") return arrayLikeToArray(o, minLen);
++    var n = Object.prototype.toString.call(o).slice(8, -1);
++    if (n === "Object" && o.constructor) n = o.constructor.name;
++    if (n === "Map" || n === "Set") return Array.from(o);
++    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
++  }
++  module.exports = _unsupportedIterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ unwrapExports(unsupportedIterableToArray);
+ 
+ var nonIterableRest = createCommonjsModule(function (module) {
+-function _nonIterableRest() {
+-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+-}
+-module.exports = _nonIterableRest, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  function _nonIterableRest() {
++    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
++  }
++  module.exports = _nonIterableRest, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ unwrapExports(nonIterableRest);
+ 
+ var slicedToArray = createCommonjsModule(function (module) {
+-function _slicedToArray(arr, i) {
+-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
+-}
+-module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  function _slicedToArray(arr, i) {
++    return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
++  }
++  module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ var _slicedToArray = unwrapExports(slicedToArray);
+ 
+ var objectWithoutPropertiesLoose = createCommonjsModule(function (module) {
+-function _objectWithoutPropertiesLoose(source, excluded) {
+-  if (source == null) return {};
+-  var target = {};
+-  var sourceKeys = Object.keys(source);
+-  var key, i;
+-  for (i = 0; i < sourceKeys.length; i++) {
+-    key = sourceKeys[i];
+-    if (excluded.indexOf(key) >= 0) continue;
+-    target[key] = source[key];
++  function _objectWithoutPropertiesLoose(source, excluded) {
++    if (source == null) return {};
++    var target = {};
++    var sourceKeys = Object.keys(source);
++    var key, i;
++    for (i = 0; i < sourceKeys.length; i++) {
++      key = sourceKeys[i];
++      if (excluded.indexOf(key) >= 0) continue;
++      target[key] = source[key];
++    }
++    return target;
+   }
+-  return target;
+-}
+-module.exports = _objectWithoutPropertiesLoose, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  module.exports = _objectWithoutPropertiesLoose, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ unwrapExports(objectWithoutPropertiesLoose);
+ 
+ var objectWithoutProperties = createCommonjsModule(function (module) {
+-function _objectWithoutProperties(source, excluded) {
+-  if (source == null) return {};
+-  var target = objectWithoutPropertiesLoose(source, excluded);
+-  var key, i;
+-  if (Object.getOwnPropertySymbols) {
+-    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+-    for (i = 0; i < sourceSymbolKeys.length; i++) {
+-      key = sourceSymbolKeys[i];
+-      if (excluded.indexOf(key) >= 0) continue;
+-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+-      target[key] = source[key];
++  function _objectWithoutProperties(source, excluded) {
++    if (source == null) return {};
++    var target = objectWithoutPropertiesLoose(source, excluded);
++    var key, i;
++    if (Object.getOwnPropertySymbols) {
++      var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
++      for (i = 0; i < sourceSymbolKeys.length; i++) {
++        key = sourceSymbolKeys[i];
++        if (excluded.indexOf(key) >= 0) continue;
++        if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
++        target[key] = source[key];
++      }
+     }
++    return target;
+   }
+-  return target;
+-}
+-module.exports = _objectWithoutProperties, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  module.exports = _objectWithoutProperties, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ var _objectWithoutProperties = unwrapExports(objectWithoutProperties);
+ 
+ var _typeof_1 = createCommonjsModule(function (module) {
+-function _typeof(o) {
+-  "@babel/helpers - typeof";
++  function _typeof(o) {
++    "@babel/helpers - typeof";
+ 
+-  return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+-    return typeof o;
+-  } : function (o) {
+-    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+-  }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(o);
+-}
+-module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
++    return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
++      return typeof o;
++    } : function (o) {
++      return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
++    }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(o);
++  }
++  module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ unwrapExports(_typeof_1);
+ 
+ var toPrimitive = createCommonjsModule(function (module) {
+-var _typeof = _typeof_1["default"];
+-function _toPrimitive(input, hint) {
+-  if (_typeof(input) !== "object" || input === null) return input;
+-  var prim = input[Symbol.toPrimitive];
+-  if (prim !== undefined) {
+-    var res = prim.call(input, hint || "default");
+-    if (_typeof(res) !== "object") return res;
+-    throw new TypeError("@@toPrimitive must return a primitive value.");
++  var _typeof = _typeof_1["default"];
++  function _toPrimitive(input, hint) {
++    if (_typeof(input) !== "object" || input === null) return input;
++    var prim = input[Symbol.toPrimitive];
++    if (prim !== undefined) {
++      var res = prim.call(input, hint || "default");
++      if (_typeof(res) !== "object") return res;
++      throw new TypeError("@@toPrimitive must return a primitive value.");
++    }
++    return (hint === "string" ? String : Number)(input);
+   }
+-  return (hint === "string" ? String : Number)(input);
+-}
+-module.exports = _toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  module.exports = _toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ unwrapExports(toPrimitive);
+ 
+ var toPropertyKey = createCommonjsModule(function (module) {
+-var _typeof = _typeof_1["default"];
++  var _typeof = _typeof_1["default"];
+ 
+-function _toPropertyKey(arg) {
+-  var key = toPrimitive(arg, "string");
+-  return _typeof(key) === "symbol" ? key : String(key);
+-}
+-module.exports = _toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  function _toPropertyKey(arg) {
++    var key = toPrimitive(arg, "string");
++    return _typeof(key) === "symbol" ? key : String(key);
++  }
++  module.exports = _toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ unwrapExports(toPropertyKey);
+ 
+ var defineProperty = createCommonjsModule(function (module) {
+-function _defineProperty(obj, key, value) {
+-  key = toPropertyKey(key);
+-  if (key in obj) {
+-    Object.defineProperty(obj, key, {
+-      value: value,
+-      enumerable: true,
+-      configurable: true,
+-      writable: true
+-    });
+-  } else {
+-    obj[key] = value;
++  function _defineProperty(obj, key, value) {
++    key = toPropertyKey(key);
++    if (key in obj) {
++      Object.defineProperty(obj, key, {
++        value: value,
++        enumerable: true,
++        configurable: true,
++        writable: true
++      });
++    } else {
++      obj[key] = value;
++    }
++    return obj;
+   }
+-  return obj;
+-}
+-module.exports = _defineProperty, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  module.exports = _defineProperty, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ var _defineProperty = unwrapExports(defineProperty);
+@@ -245,14 +245,14 @@ var IS_WECHATBROWSER = typeof navigator !== 'undefined' && /.*Wechat/.test(navig
+ // https://github.com/facebook/react/blob/master/packages/shared/ExecutionEnvironment.js
+ var CAN_USE_DOM = !!(typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined');
+ // Check if the browser is Safari and older than 17
+-var IS_SAFARI_LEGACY = typeof navigator !== 'undefined' && /Safari/.test(navigator.userAgent) && /Version\/(\d+)/.test(navigator.userAgent) && ((_navigator$userAgent$ = navigator.userAgent.match(/Version\/(\d+)/)) !== null && _navigator$userAgent$ !== void 0 && _navigator$userAgent$[1] ? parseInt((_navigator$userAgent$2 = navigator.userAgent.match(/Version\/(\d+)/)) === null || _navigator$userAgent$2 === void 0 ? void 0 : _navigator$userAgent$2[1], 10) < 17 : false);
++typeof navigator !== 'undefined' && /Safari/.test(navigator.userAgent) && /Version\/(\d+)/.test(navigator.userAgent) && ((_navigator$userAgent$ = navigator.userAgent.match(/Version\/(\d+)/)) !== null && _navigator$userAgent$ !== void 0 && _navigator$userAgent$[1] ? parseInt((_navigator$userAgent$2 = navigator.userAgent.match(/Version\/(\d+)/)) === null || _navigator$userAgent$2 === void 0 ? void 0 : _navigator$userAgent$2[1], 10) < 17 : false);
+ // COMPAT: Firefox/Edge Legacy don't support the `beforeinput` event
+ // Chrome Legacy doesn't support `beforeinput` correctly
+ var HAS_BEFORE_INPUT_SUPPORT = (!IS_CHROME_LEGACY || !IS_ANDROID_CHROME_LEGACY) && !IS_EDGE_LEGACY &&
+-// globalThis is undefined in older browsers
+-typeof globalThis !== 'undefined' && globalThis.InputEvent &&
+-// @ts-ignore The `getTargetRanges` property isn't recognized.
+-typeof globalThis.InputEvent.prototype.getTargetRanges === 'function';
++  // globalThis is undefined in older browsers
++  typeof globalThis !== 'undefined' && globalThis.InputEvent &&
++  // @ts-ignore The `getTargetRanges` property isn't recognized.
++  typeof globalThis.InputEvent.prototype.getTargetRanges === 'function';
+ 
+ /**
+  * Two weak maps that allow us rebuild a path given a node. They are populated
+@@ -302,37 +302,37 @@ var PLACEHOLDER_SYMBOL = Symbol('placeholder');
+ var MARK_PLACEHOLDER_SYMBOL = Symbol('mark-placeholder');
+ 
+ var arrayWithoutHoles = createCommonjsModule(function (module) {
+-function _arrayWithoutHoles(arr) {
+-  if (Array.isArray(arr)) return arrayLikeToArray(arr);
+-}
+-module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  function _arrayWithoutHoles(arr) {
++    if (Array.isArray(arr)) return arrayLikeToArray(arr);
++  }
++  module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ unwrapExports(arrayWithoutHoles);
+ 
+ var iterableToArray = createCommonjsModule(function (module) {
+-function _iterableToArray(iter) {
+-  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
+-}
+-module.exports = _iterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  function _iterableToArray(iter) {
++    if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
++  }
++  module.exports = _iterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ unwrapExports(iterableToArray);
+ 
+ var nonIterableSpread = createCommonjsModule(function (module) {
+-function _nonIterableSpread() {
+-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+-}
+-module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  function _nonIterableSpread() {
++    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
++  }
++  module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ unwrapExports(nonIterableSpread);
+ 
+ var toConsumableArray = createCommonjsModule(function (module) {
+-function _toConsumableArray(arr) {
+-  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+-}
+-module.exports = _toConsumableArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  function _toConsumableArray(arr) {
++    return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
++  }
++  module.exports = _toConsumableArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ var _toConsumableArray = unwrapExports(toConsumableArray);
+@@ -572,35 +572,35 @@ var getActiveElement = function getActiveElement() {
+ };
+ 
+ var createClass = createCommonjsModule(function (module) {
+-function _defineProperties(target, props) {
+-  for (var i = 0; i < props.length; i++) {
+-    var descriptor = props[i];
+-    descriptor.enumerable = descriptor.enumerable || false;
+-    descriptor.configurable = true;
+-    if ("value" in descriptor) descriptor.writable = true;
+-    Object.defineProperty(target, toPropertyKey(descriptor.key), descriptor);
++  function _defineProperties(target, props) {
++    for (var i = 0; i < props.length; i++) {
++      var descriptor = props[i];
++      descriptor.enumerable = descriptor.enumerable || false;
++      descriptor.configurable = true;
++      if ("value" in descriptor) descriptor.writable = true;
++      Object.defineProperty(target, toPropertyKey(descriptor.key), descriptor);
++    }
+   }
+-}
+-function _createClass(Constructor, protoProps, staticProps) {
+-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+-  if (staticProps) _defineProperties(Constructor, staticProps);
+-  Object.defineProperty(Constructor, "prototype", {
+-    writable: false
+-  });
+-  return Constructor;
+-}
+-module.exports = _createClass, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  function _createClass(Constructor, protoProps, staticProps) {
++    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
++    if (staticProps) _defineProperties(Constructor, staticProps);
++    Object.defineProperty(Constructor, "prototype", {
++      writable: false
++    });
++    return Constructor;
++  }
++  module.exports = _createClass, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ var _createClass = unwrapExports(createClass);
+ 
+ var classCallCheck = createCommonjsModule(function (module) {
+-function _classCallCheck(instance, Constructor) {
+-  if (!(instance instanceof Constructor)) {
+-    throw new TypeError("Cannot call a class as a function");
++  function _classCallCheck(instance, Constructor) {
++    if (!(instance instanceof Constructor)) {
++      throw new TypeError("Cannot call a class as a function");
++    }
+   }
+-}
+-module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ var _classCallCheck = unwrapExports(classCallCheck);
+@@ -810,9 +810,9 @@ var ReactEditor = {
+       return false;
+     }
+     return targetEl.closest("[data-slate-editor]") === editorEl && (!editable || targetEl.isContentEditable ? true : typeof targetEl.isContentEditable === 'boolean' &&
+-    // isContentEditable exists only on HTMLElement, and on other nodes it will be undefined
+-    // this is the core logic that lets you know you got the right editor.selection instead of null when editor is contenteditable="false"(readOnly)
+-    targetEl.closest('[contenteditable="false"]') === editorEl || !!targetEl.getAttribute('data-slate-zero-width'));
++      // isContentEditable exists only on HTMLElement, and on other nodes it will be undefined
++      // this is the core logic that lets you know you got the right editor.selection instead of null when editor is contenteditable="false"(readOnly)
++      targetEl.closest('[contenteditable="false"]') === editorEl || !!targetEl.getAttribute('data-slate-zero-width'));
+   },
+   hasEditableTarget: function hasEditableTarget(editor, target) {
+     return isDOMNode(target) && ReactEditor.hasDOMNode(editor, target, {
+@@ -903,12 +903,12 @@ var ReactEditor = {
+         var _nextText$textContent;
+         var domText = nextText.childNodes[0];
+         domPoint = [
+-        // COMPAT: If we don't explicity set the dom point to be on the actual
+-        // dom text element, chrome will put the selection behind the actual dom
+-        // text element, causing domRange.getBoundingClientRect() calls on a collapsed
+-        // selection to return incorrect zero values (https://bugs.chromium.org/p/chromium/issues/detail?id=435438)
+-        // which will cause issues when scrolling to it.
+-        domText instanceof DOMText ? domText : nextText, (_nextText$textContent = nextText.textContent) !== null && _nextText$textContent !== void 0 && _nextText$textContent.startsWith("\uFEFF") ? 1 : 0];
++          // COMPAT: If we don't explicity set the dom point to be on the actual
++          // dom text element, chrome will put the selection behind the actual dom
++          // text element, causing domRange.getBoundingClientRect() calls on a collapsed
++          // selection to return incorrect zero values (https://bugs.chromium.org/p/chromium/issues/detail?id=435438)
++          // which will cause issues when scrolling to it.
++          domText instanceof DOMText ? domText : nextText, (_nextText$textContent = nextText.textContent) !== null && _nextText$textContent !== void 0 && _nextText$textContent.startsWith("\uFEFF") ? 1 : 0];
+         break;
+       }
+       if (point.offset <= end) {
+@@ -1037,19 +1037,19 @@ var ReactEditor = {
+         }
+       }
+       if (domNode && offset === domNode.textContent.length &&
+-      // COMPAT: Android IMEs might remove the zero width space while composing,
+-      // and we don't add it for line-breaks.
+-      IS_ANDROID && domNode.getAttribute('data-slate-zero-width') === 'z' && (_domNode$textContent = domNode.textContent) !== null && _domNode$textContent !== void 0 && _domNode$textContent.startsWith("\uFEFF") && (
+-      // COMPAT: If the parent node is a Slate zero-width space, editor is
+-      // because the text node should have no characters. However, during IME
+-      // composition the ASCII characters will be prepended to the zero-width
+-      // space, so subtract 1 from the offset to account for the zero-width
+-      // space character.
+-      parentNode.hasAttribute('data-slate-zero-width') ||
+-      // COMPAT: In Firefox, `range.cloneContents()` returns an extra trailing '\n'
+-      // when the document ends with a new-line character. This results in the offset
+-      // length being off by one, so we need to subtract one to account for this.
+-      IS_FIREFOX && (_domNode$textContent2 = domNode.textContent) !== null && _domNode$textContent2 !== void 0 && _domNode$textContent2.endsWith('\n\n'))) {
++        // COMPAT: Android IMEs might remove the zero width space while composing,
++        // and we don't add it for line-breaks.
++        IS_ANDROID && domNode.getAttribute('data-slate-zero-width') === 'z' && (_domNode$textContent = domNode.textContent) !== null && _domNode$textContent !== void 0 && _domNode$textContent.startsWith("\uFEFF") && (
++          // COMPAT: If the parent node is a Slate zero-width space, editor is
++          // because the text node should have no characters. However, during IME
++          // composition the ASCII characters will be prepended to the zero-width
++          // space, so subtract 1 from the offset to account for the zero-width
++          // space character.
++          parentNode.hasAttribute('data-slate-zero-width') ||
++          // COMPAT: In Firefox, `range.cloneContents()` returns an extra trailing '\n'
++          // when the document ends with a new-line character. This results in the offset
++          // length being off by one, so we need to subtract one to account for this.
++          IS_FIREFOX && (_domNode$textContent2 = domNode.textContent) !== null && _domNode$textContent2 !== void 0 && _domNode$textContent2.endsWith('\n\n'))) {
+         offset--;
+       }
+     }
+@@ -1472,50 +1472,40 @@ function transformTextDiff(textDiff, op) {
+     id = textDiff.id;
+   switch (op.type) {
+     case 'insert_text':
+-      {
+-        if (!slate.Path.equals(op.path, path) || op.offset >= diff.end) {
+-          return textDiff;
+-        }
+-        if (op.offset <= diff.start) {
+-          return {
+-            diff: {
+-              start: op.text.length + diff.start,
+-              end: op.text.length + diff.end,
+-              text: diff.text
+-            },
+-            id: id,
+-            path: path
+-          };
+-        }
++    {
++      if (!slate.Path.equals(op.path, path) || op.offset >= diff.end) {
++        return textDiff;
++      }
++      if (op.offset <= diff.start) {
+         return {
+           diff: {
+-            start: diff.start,
+-            end: diff.end + op.text.length,
++            start: op.text.length + diff.start,
++            end: op.text.length + diff.end,
+             text: diff.text
+           },
+           id: id,
+           path: path
+         };
+       }
++      return {
++        diff: {
++          start: diff.start,
++          end: diff.end + op.text.length,
++          text: diff.text
++        },
++        id: id,
++        path: path
++      };
++    }
+     case 'remove_text':
+-      {
+-        if (!slate.Path.equals(op.path, path) || op.offset >= diff.end) {
+-          return textDiff;
+-        }
+-        if (op.offset + op.text.length <= diff.start) {
+-          return {
+-            diff: {
+-              start: diff.start - op.text.length,
+-              end: diff.end - op.text.length,
+-              text: diff.text
+-            },
+-            id: id,
+-            path: path
+-          };
+-        }
++    {
++      if (!slate.Path.equals(op.path, path) || op.offset >= diff.end) {
++        return textDiff;
++      }
++      if (op.offset + op.text.length <= diff.start) {
+         return {
+           diff: {
+-            start: diff.start,
++            start: diff.start - op.text.length,
+             end: diff.end - op.text.length,
+             text: diff.text
+           },
+@@ -1523,59 +1513,69 @@ function transformTextDiff(textDiff, op) {
+           path: path
+         };
+       }
++      return {
++        diff: {
++          start: diff.start,
++          end: diff.end - op.text.length,
++          text: diff.text
++        },
++        id: id,
++        path: path
++      };
++    }
+     case 'split_node':
+-      {
+-        if (!slate.Path.equals(op.path, path) || op.position >= diff.end) {
+-          return {
+-            diff: diff,
+-            id: id,
+-            path: slate.Path.transform(path, op, {
+-              affinity: 'backward'
+-            })
+-          };
+-        }
+-        if (op.position > diff.start) {
+-          return {
+-            diff: {
+-              start: diff.start,
+-              end: Math.min(op.position, diff.end),
+-              text: diff.text
+-            },
+-            id: id,
+-            path: path
+-          };
+-        }
++    {
++      if (!slate.Path.equals(op.path, path) || op.position >= diff.end) {
+         return {
+-          diff: {
+-            start: diff.start - op.position,
+-            end: diff.end - op.position,
+-            text: diff.text
+-          },
++          diff: diff,
+           id: id,
+           path: slate.Path.transform(path, op, {
+-            affinity: 'forward'
++            affinity: 'backward'
+           })
+         };
+       }
+-    case 'merge_node':
+-      {
+-        if (!slate.Path.equals(op.path, path)) {
+-          return {
+-            diff: diff,
+-            id: id,
+-            path: slate.Path.transform(path, op)
+-          };
+-        }
++      if (op.position > diff.start) {
+         return {
+           diff: {
+-            start: diff.start + op.position,
+-            end: diff.end + op.position,
++            start: diff.start,
++            end: Math.min(op.position, diff.end),
+             text: diff.text
+           },
+           id: id,
++          path: path
++        };
++      }
++      return {
++        diff: {
++          start: diff.start - op.position,
++          end: diff.end - op.position,
++          text: diff.text
++        },
++        id: id,
++        path: slate.Path.transform(path, op, {
++          affinity: 'forward'
++        })
++      };
++    }
++    case 'merge_node':
++    {
++      if (!slate.Path.equals(op.path, path)) {
++        return {
++          diff: diff,
++          id: id,
+           path: slate.Path.transform(path, op)
+         };
+       }
++      return {
++        diff: {
++          start: diff.start + op.position,
++          end: diff.end + op.position,
++          text: diff.text
++        },
++        id: id,
++        path: slate.Path.transform(path, op)
++      };
++    }
+   }
+   var newPath = slate.Path.transform(path, op);
+   if (!newPath) {
+@@ -1923,145 +1923,145 @@ function createAndroidInputManager(_ref) {
+       case 'deleteByComposition':
+       case 'deleteByCut':
+       case 'deleteByDrag':
+-        {
+-          return scheduleAction(function () {
+-            return slate.Editor.deleteFragment(editor);
+-          }, {
+-            at: targetRange
+-          });
+-        }
++      {
++        return scheduleAction(function () {
++          return slate.Editor.deleteFragment(editor);
++        }, {
++          at: targetRange
++        });
++      }
+       case 'deleteContent':
+       case 'deleteContentForward':
+-        {
+-          var _targetRange3 = targetRange,
+-            anchor = _targetRange3.anchor;
+-          if (canStoreDiff && slate.Range.isCollapsed(targetRange)) {
+-            var targetNode = slate.Node.leaf(editor, anchor.path);
+-            if (anchor.offset < targetNode.text.length) {
+-              return storeDiff(anchor.path, {
+-                text: '',
+-                start: anchor.offset,
+-                end: anchor.offset + 1
+-              });
+-            }
+-          }
+-          return scheduleAction(function () {
+-            return slate.Editor.deleteForward(editor);
+-          }, {
+-            at: targetRange
+-          });
+-        }
+-      case 'deleteContentBackward':
+-        {
+-          var _nativeTargetRange;
+-          var _targetRange4 = targetRange,
+-            _anchor = _targetRange4.anchor;
+-          // If we have a mismatch between the native and slate selection being collapsed
+-          // we are most likely deleting a zero-width placeholder and thus should perform it
+-          // as an action to ensure correct behavior (mostly happens with mark placeholders)
+-          var nativeCollapsed = isDOMSelection(nativeTargetRange) ? nativeTargetRange.isCollapsed : !!((_nativeTargetRange = nativeTargetRange) !== null && _nativeTargetRange !== void 0 && _nativeTargetRange.collapsed);
+-          if (canStoreDiff && nativeCollapsed && slate.Range.isCollapsed(targetRange) && _anchor.offset > 0) {
+-            return storeDiff(_anchor.path, {
++      {
++        var _targetRange3 = targetRange,
++          anchor = _targetRange3.anchor;
++        if (canStoreDiff && slate.Range.isCollapsed(targetRange)) {
++          var targetNode = slate.Node.leaf(editor, anchor.path);
++          if (anchor.offset < targetNode.text.length) {
++            return storeDiff(anchor.path, {
+               text: '',
+-              start: _anchor.offset - 1,
+-              end: _anchor.offset
++              start: anchor.offset,
++              end: anchor.offset + 1
+             });
+           }
+-          return scheduleAction(function () {
+-            return slate.Editor.deleteBackward(editor);
+-          }, {
+-            at: targetRange
++        }
++        return scheduleAction(function () {
++          return slate.Editor.deleteForward(editor);
++        }, {
++          at: targetRange
++        });
++      }
++      case 'deleteContentBackward':
++      {
++        var _nativeTargetRange;
++        var _targetRange4 = targetRange,
++          _anchor = _targetRange4.anchor;
++        // If we have a mismatch between the native and slate selection being collapsed
++        // we are most likely deleting a zero-width placeholder and thus should perform it
++        // as an action to ensure correct behavior (mostly happens with mark placeholders)
++        var nativeCollapsed = isDOMSelection(nativeTargetRange) ? nativeTargetRange.isCollapsed : !!((_nativeTargetRange = nativeTargetRange) !== null && _nativeTargetRange !== void 0 && _nativeTargetRange.collapsed);
++        if (canStoreDiff && nativeCollapsed && slate.Range.isCollapsed(targetRange) && _anchor.offset > 0) {
++          return storeDiff(_anchor.path, {
++            text: '',
++            start: _anchor.offset - 1,
++            end: _anchor.offset
+           });
+         }
++        return scheduleAction(function () {
++          return slate.Editor.deleteBackward(editor);
++        }, {
++          at: targetRange
++        });
++      }
+       case 'deleteEntireSoftLine':
+-        {
+-          return scheduleAction(function () {
+-            slate.Editor.deleteBackward(editor, {
+-              unit: 'line'
+-            });
+-            slate.Editor.deleteForward(editor, {
+-              unit: 'line'
+-            });
+-          }, {
+-            at: targetRange
++      {
++        return scheduleAction(function () {
++          slate.Editor.deleteBackward(editor, {
++            unit: 'line'
+           });
+-        }
++          slate.Editor.deleteForward(editor, {
++            unit: 'line'
++          });
++        }, {
++          at: targetRange
++        });
++      }
+       case 'deleteHardLineBackward':
+-        {
+-          return scheduleAction(function () {
+-            return slate.Editor.deleteBackward(editor, {
+-              unit: 'block'
+-            });
+-          }, {
+-            at: targetRange
++      {
++        return scheduleAction(function () {
++          return slate.Editor.deleteBackward(editor, {
++            unit: 'block'
+           });
+-        }
++        }, {
++          at: targetRange
++        });
++      }
+       case 'deleteSoftLineBackward':
+-        {
+-          return scheduleAction(function () {
+-            return slate.Editor.deleteBackward(editor, {
+-              unit: 'line'
+-            });
+-          }, {
+-            at: targetRange
++      {
++        return scheduleAction(function () {
++          return slate.Editor.deleteBackward(editor, {
++            unit: 'line'
+           });
+-        }
++        }, {
++          at: targetRange
++        });
++      }
+       case 'deleteHardLineForward':
+-        {
+-          return scheduleAction(function () {
+-            return slate.Editor.deleteForward(editor, {
+-              unit: 'block'
+-            });
+-          }, {
+-            at: targetRange
++      {
++        return scheduleAction(function () {
++          return slate.Editor.deleteForward(editor, {
++            unit: 'block'
+           });
+-        }
++        }, {
++          at: targetRange
++        });
++      }
+       case 'deleteSoftLineForward':
+-        {
+-          return scheduleAction(function () {
+-            return slate.Editor.deleteForward(editor, {
+-              unit: 'line'
+-            });
+-          }, {
+-            at: targetRange
++      {
++        return scheduleAction(function () {
++          return slate.Editor.deleteForward(editor, {
++            unit: 'line'
+           });
+-        }
++        }, {
++          at: targetRange
++        });
++      }
+       case 'deleteWordBackward':
+-        {
+-          return scheduleAction(function () {
+-            return slate.Editor.deleteBackward(editor, {
+-              unit: 'word'
+-            });
+-          }, {
+-            at: targetRange
++      {
++        return scheduleAction(function () {
++          return slate.Editor.deleteBackward(editor, {
++            unit: 'word'
+           });
+-        }
++        }, {
++          at: targetRange
++        });
++      }
+       case 'deleteWordForward':
+-        {
+-          return scheduleAction(function () {
+-            return slate.Editor.deleteForward(editor, {
+-              unit: 'word'
+-            });
+-          }, {
+-            at: targetRange
++      {
++        return scheduleAction(function () {
++          return slate.Editor.deleteForward(editor, {
++            unit: 'word'
+           });
+-        }
++        }, {
++          at: targetRange
++        });
++      }
+       case 'insertLineBreak':
+-        {
+-          return scheduleAction(function () {
+-            return slate.Editor.insertSoftBreak(editor);
+-          }, {
+-            at: targetRange
+-          });
+-        }
++      {
++        return scheduleAction(function () {
++          return slate.Editor.insertSoftBreak(editor);
++        }, {
++          at: targetRange
++        });
++      }
+       case 'insertParagraph':
+-        {
+-          return scheduleAction(function () {
+-            return slate.Editor.insertBreak(editor);
+-          }, {
+-            at: targetRange
+-          });
+-        }
++      {
++        return scheduleAction(function () {
++          return slate.Editor.insertBreak(editor);
++        }, {
++          at: targetRange
++        });
++      }
+       case 'insertCompositionText':
+       case 'deleteCompositionText':
+       case 'insertFromComposition':
+@@ -2070,93 +2070,93 @@ function createAndroidInputManager(_ref) {
+       case 'insertFromYank':
+       case 'insertReplacementText':
+       case 'insertText':
+-        {
+-          if (isDataTransfer(data)) {
+-            return scheduleAction(function () {
+-              return ReactEditor.insertData(editor, data);
+-            }, {
+-              at: targetRange
+-            });
+-          }
+-          var _text = data !== null && data !== void 0 ? data : '';
+-          // COMPAT: If we are writing inside a placeholder, the ime inserts the text inside
+-          // the placeholder itself and thus includes the zero-width space inside edit events.
+-          if (EDITOR_TO_PENDING_INSERTION_MARKS.get(editor)) {
+-            _text = _text.replace("\uFEFF", '');
+-          }
+-          // Pastes from the Android clipboard will generate `insertText` events.
+-          // If the copied text contains any newlines, Android will append an
+-          // extra newline to the end of the copied text.
+-          if (type === 'insertText' && /.*\n.*\n$/.test(_text)) {
+-            _text = _text.slice(0, -1);
+-          }
+-          // If the text includes a newline, split it at newlines and paste each component
+-          // string, with soft breaks in between each.
+-          if (_text.includes('\n')) {
+-            return scheduleAction(function () {
+-              var parts = _text.split('\n');
+-              parts.forEach(function (line, i) {
+-                if (line) {
+-                  slate.Editor.insertText(editor, line);
+-                }
+-                if (i !== parts.length - 1) {
+-                  slate.Editor.insertSoftBreak(editor);
+-                }
+-              });
+-            }, {
+-              at: targetRange
+-            });
+-          }
+-          if (slate.Path.equals(targetRange.anchor.path, targetRange.focus.path)) {
+-            var _Range$edges5 = slate.Range.edges(targetRange),
+-              _Range$edges6 = _slicedToArray(_Range$edges5, 2),
+-              _start2 = _Range$edges6[0],
+-              _end2 = _Range$edges6[1];
+-            var _diff = {
+-              start: _start2.offset,
+-              end: _end2.offset,
+-              text: _text
+-            };
+-            // COMPAT: Swiftkey has a weird bug where the target range of the 2nd word
+-            // inserted after a mark placeholder is inserted with an anchor offset off by 1.
+-            // So writing 'some text' will result in 'some ttext'. Luckily all 'normal' insert
+-            // text events are fired with the correct target ranges, only the final 'insertComposition'
+-            // isn't, so we can adjust the target range start offset if we are confident this is the
+-            // swiftkey insert causing the issue.
+-            if (_text && insertPositionHint && type === 'insertCompositionText') {
+-              var hintPosition = insertPositionHint.start + insertPositionHint.text.search(/\S|$/);
+-              var diffPosition = _diff.start + _diff.text.search(/\S|$/);
+-              if (diffPosition === hintPosition + 1 && _diff.end === insertPositionHint.start + insertPositionHint.text.length) {
+-                _diff.start -= 1;
+-                insertPositionHint = null;
+-                scheduleFlush();
+-              } else {
+-                insertPositionHint = false;
++      {
++        if (isDataTransfer(data)) {
++          return scheduleAction(function () {
++            return ReactEditor.insertData(editor, data);
++          }, {
++            at: targetRange
++          });
++        }
++        var _text = data !== null && data !== void 0 ? data : '';
++        // COMPAT: If we are writing inside a placeholder, the ime inserts the text inside
++        // the placeholder itself and thus includes the zero-width space inside edit events.
++        if (EDITOR_TO_PENDING_INSERTION_MARKS.get(editor)) {
++          _text = _text.replace("\uFEFF", '');
++        }
++        // Pastes from the Android clipboard will generate `insertText` events.
++        // If the copied text contains any newlines, Android will append an
++        // extra newline to the end of the copied text.
++        if (type === 'insertText' && /.*\n.*\n$/.test(_text)) {
++          _text = _text.slice(0, -1);
++        }
++        // If the text includes a newline, split it at newlines and paste each component
++        // string, with soft breaks in between each.
++        if (_text.includes('\n')) {
++          return scheduleAction(function () {
++            var parts = _text.split('\n');
++            parts.forEach(function (line, i) {
++              if (line) {
++                slate.Editor.insertText(editor, line);
+               }
+-            } else if (type === 'insertText') {
+-              if (insertPositionHint === null) {
+-                insertPositionHint = _diff;
+-              } else if (insertPositionHint && slate.Range.isCollapsed(targetRange) && insertPositionHint.end + insertPositionHint.text.length === _start2.offset) {
+-                insertPositionHint = _objectSpread$6(_objectSpread$6({}, insertPositionHint), {}, {
+-                  text: insertPositionHint.text + _text
+-                });
+-              } else {
+-                insertPositionHint = false;
++              if (i !== parts.length - 1) {
++                slate.Editor.insertSoftBreak(editor);
+               }
++            });
++          }, {
++            at: targetRange
++          });
++        }
++        if (slate.Path.equals(targetRange.anchor.path, targetRange.focus.path)) {
++          var _Range$edges5 = slate.Range.edges(targetRange),
++            _Range$edges6 = _slicedToArray(_Range$edges5, 2),
++            _start2 = _Range$edges6[0],
++            _end2 = _Range$edges6[1];
++          var _diff = {
++            start: _start2.offset,
++            end: _end2.offset,
++            text: _text
++          };
++          // COMPAT: Swiftkey has a weird bug where the target range of the 2nd word
++          // inserted after a mark placeholder is inserted with an anchor offset off by 1.
++          // So writing 'some text' will result in 'some ttext'. Luckily all 'normal' insert
++          // text events are fired with the correct target ranges, only the final 'insertComposition'
++          // isn't, so we can adjust the target range start offset if we are confident this is the
++          // swiftkey insert causing the issue.
++          if (_text && insertPositionHint && type === 'insertCompositionText') {
++            var hintPosition = insertPositionHint.start + insertPositionHint.text.search(/\S|$/);
++            var diffPosition = _diff.start + _diff.text.search(/\S|$/);
++            if (diffPosition === hintPosition + 1 && _diff.end === insertPositionHint.start + insertPositionHint.text.length) {
++              _diff.start -= 1;
++              insertPositionHint = null;
++              scheduleFlush();
+             } else {
+               insertPositionHint = false;
+             }
+-            if (canStoreDiff) {
+-              storeDiff(_start2.path, _diff);
+-              return;
++          } else if (type === 'insertText') {
++            if (insertPositionHint === null) {
++              insertPositionHint = _diff;
++            } else if (insertPositionHint && slate.Range.isCollapsed(targetRange) && insertPositionHint.end + insertPositionHint.text.length === _start2.offset) {
++              insertPositionHint = _objectSpread$6(_objectSpread$6({}, insertPositionHint), {}, {
++                text: insertPositionHint.text + _text
++              });
++            } else {
++              insertPositionHint = false;
+             }
++          } else {
++            insertPositionHint = false;
++          }
++          if (canStoreDiff) {
++            storeDiff(_start2.path, _diff);
++            return;
+           }
+-          return scheduleAction(function () {
+-            return slate.Editor.insertText(editor, _text);
+-          }, {
+-            at: targetRange
+-          });
+         }
++        return scheduleAction(function () {
++          return slate.Editor.insertText(editor, _text);
++        }, {
++          at: targetRange
++        });
++      }
+     }
+   };
+   var hasPendingAction = function hasPendingAction() {
+@@ -2322,11 +2322,11 @@ var shallowCompare = function shallowCompare(obj1, obj2) {
+ };
+ var isDecorationFlagsEqual = function isDecorationFlagsEqual(range, other) {
+   range.anchor;
+-    range.focus;
+-    var rangeOwnProps = _objectWithoutProperties(range, _excluded$2);
++  range.focus;
++  var rangeOwnProps = _objectWithoutProperties(range, _excluded$2);
+   other.anchor;
+-    other.focus;
+-    var otherOwnProps = _objectWithoutProperties(other, _excluded2$1);
++  other.focus;
++  var otherOwnProps = _objectWithoutProperties(other, _excluded2$1);
+   return range[PLACEHOLDER_SYMBOL] === other[PLACEHOLDER_SYMBOL] && shallowCompare(rangeOwnProps, otherOwnProps);
+ };
+ /**
+@@ -2481,7 +2481,7 @@ var ZeroWidthString = function ZeroWidthString(props) {
+   if (isMarkPlaceholder) {
+     attributes['data-slate-mark-placeholder'] = true;
+   }
+-  return /*#__PURE__*/React.createElement("span", _objectSpread$4({}, attributes), !IS_ANDROID || !isLineBreak ? "\uFEFF" : null, isLineBreak ? /*#__PURE__*/React.createElement("br", null) : null);
++  return /*#__PURE__*/React.createElement("span", _objectSpread$4({}, attributes), !(IS_ANDROID || IS_IOS) || !isLineBreak ? "\uFEFF" : null, isLineBreak ? /*#__PURE__*/React.createElement("br", null) : null);
+ };
+ 
+ function ownKeys$3(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+@@ -3018,76 +3018,76 @@ var Hotkeys = {
+ };
+ 
+ var assertThisInitialized = createCommonjsModule(function (module) {
+-function _assertThisInitialized(self) {
+-  if (self === void 0) {
+-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
++  function _assertThisInitialized(self) {
++    if (self === void 0) {
++      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
++    }
++    return self;
+   }
+-  return self;
+-}
+-module.exports = _assertThisInitialized, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  module.exports = _assertThisInitialized, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ var _assertThisInitialized = unwrapExports(assertThisInitialized);
+ 
+ var setPrototypeOf = createCommonjsModule(function (module) {
+-function _setPrototypeOf(o, p) {
+-  module.exports = _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
+-    o.__proto__ = p;
+-    return o;
+-  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
+-  return _setPrototypeOf(o, p);
+-}
+-module.exports = _setPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  function _setPrototypeOf(o, p) {
++    module.exports = _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
++      o.__proto__ = p;
++      return o;
++    }, module.exports.__esModule = true, module.exports["default"] = module.exports;
++    return _setPrototypeOf(o, p);
++  }
++  module.exports = _setPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ unwrapExports(setPrototypeOf);
+ 
+ var inherits = createCommonjsModule(function (module) {
+-function _inherits(subClass, superClass) {
+-  if (typeof superClass !== "function" && superClass !== null) {
+-    throw new TypeError("Super expression must either be null or a function");
++  function _inherits(subClass, superClass) {
++    if (typeof superClass !== "function" && superClass !== null) {
++      throw new TypeError("Super expression must either be null or a function");
++    }
++    subClass.prototype = Object.create(superClass && superClass.prototype, {
++      constructor: {
++        value: subClass,
++        writable: true,
++        configurable: true
++      }
++    });
++    Object.defineProperty(subClass, "prototype", {
++      writable: false
++    });
++    if (superClass) setPrototypeOf(subClass, superClass);
+   }
+-  subClass.prototype = Object.create(superClass && superClass.prototype, {
+-    constructor: {
+-      value: subClass,
+-      writable: true,
+-      configurable: true
+-    }
+-  });
+-  Object.defineProperty(subClass, "prototype", {
+-    writable: false
+-  });
+-  if (superClass) setPrototypeOf(subClass, superClass);
+-}
+-module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ var _inherits = unwrapExports(inherits);
+ 
+ var possibleConstructorReturn = createCommonjsModule(function (module) {
+-var _typeof = _typeof_1["default"];
++  var _typeof = _typeof_1["default"];
+ 
+-function _possibleConstructorReturn(self, call) {
+-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+-    return call;
+-  } else if (call !== void 0) {
+-    throw new TypeError("Derived constructors may only return object or undefined");
++  function _possibleConstructorReturn(self, call) {
++    if (call && (_typeof(call) === "object" || typeof call === "function")) {
++      return call;
++    } else if (call !== void 0) {
++      throw new TypeError("Derived constructors may only return object or undefined");
++    }
++    return assertThisInitialized(self);
+   }
+-  return assertThisInitialized(self);
+-}
+-module.exports = _possibleConstructorReturn, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  module.exports = _possibleConstructorReturn, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ var _possibleConstructorReturn = unwrapExports(possibleConstructorReturn);
+ 
+ var getPrototypeOf = createCommonjsModule(function (module) {
+-function _getPrototypeOf(o) {
+-  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
+-    return o.__proto__ || Object.getPrototypeOf(o);
+-  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
+-  return _getPrototypeOf(o);
+-}
+-module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
++  function _getPrototypeOf(o) {
++    module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
++      return o.__proto__ || Object.getPrototypeOf(o);
++    }, module.exports.__esModule = true, module.exports["default"] = module.exports;
++    return _getPrototypeOf(o);
++  }
++  module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
+ });
+ 
+ var _getPrototypeOf = unwrapExports(getPrototypeOf);
+@@ -3310,7 +3310,7 @@ var Editable = function Editable(props) {
+     return throttle(function () {
+       var el = ReactEditor.toDOMNode(editor, editor);
+       var root = el.getRootNode();
+-      if (IS_SAFARI_LEGACY && !processing.current && IS_WEBKIT && root instanceof ShadowRoot) {
++      if (!processing.current && IS_WEBKIT && root instanceof ShadowRoot) {
+         processing.current = true;
+         var active = getActiveElement();
+         if (active) {
+@@ -3515,7 +3515,7 @@ var Editable = function Editable(props) {
+   var onDOMBeforeInput = React.useCallback(function (event) {
+     var el = ReactEditor.toDOMNode(editor, editor);
+     var root = el.getRootNode();
+-    if (IS_SAFARI_LEGACY && processing !== null && processing !== void 0 && processing.current && IS_WEBKIT && root instanceof ShadowRoot) {
++    if (processing !== null && processing !== void 0 && processing.current && IS_WEBKIT && root instanceof ShadowRoot) {
+       var ranges = event.getTargetRanges();
+       var range = ranges[0];
+       var newRange = new window.Range();
+@@ -3554,14 +3554,14 @@ var Editable = function Editable(props) {
+       }
+       var _native = false;
+       if (type === 'insertText' && selection && slate.Range.isCollapsed(selection) &&
+-      // Only use native character insertion for single characters a-z or space for now.
+-      // Long-press events (hold a + press 4 = ä) to choose a special character otherwise
+-      // causes duplicate inserts.
+-      event.data && event.data.length === 1 && /[a-z ]/i.test(event.data) &&
+-      // Chrome has issues correctly editing the start of nodes: https://bugs.chromium.org/p/chromium/issues/detail?id=1249405
+-      // When there is an inline element, e.g. a link, and you select
+-      // right after it (the start of the next node).
+-      selection.anchor.offset !== 0) {
++        // Only use native character insertion for single characters a-z or space for now.
++        // Long-press events (hold a + press 4 = ä) to choose a special character otherwise
++        // causes duplicate inserts.
++        event.data && event.data.length === 1 && /[a-z ]/i.test(event.data) &&
++        // Chrome has issues correctly editing the start of nodes: https://bugs.chromium.org/p/chromium/issues/detail?id=1249405
++        // When there is an inline element, e.g. a link, and you select
++        // right after it (the start of the next node).
++        selection.anchor.offset !== 0) {
+         var _node$parentElement, _window$getComputedSt;
+         _native = true;
+         // Skip native if there are marks, as
+@@ -3643,117 +3643,117 @@ var Editable = function Editable(props) {
+         case 'deleteByComposition':
+         case 'deleteByCut':
+         case 'deleteByDrag':
+-          {
+-            slate.Editor.deleteFragment(editor);
+-            break;
+-          }
++        {
++          slate.Editor.deleteFragment(editor);
++          break;
++        }
+         case 'deleteContent':
+         case 'deleteContentForward':
+-          {
+-            slate.Editor.deleteForward(editor);
+-            break;
+-          }
++        {
++          slate.Editor.deleteForward(editor);
++          break;
++        }
+         case 'deleteContentBackward':
+-          {
+-            slate.Editor.deleteBackward(editor);
+-            break;
+-          }
++        {
++          slate.Editor.deleteBackward(editor);
++          break;
++        }
+         case 'deleteEntireSoftLine':
+-          {
+-            slate.Editor.deleteBackward(editor, {
+-              unit: 'line'
+-            });
+-            slate.Editor.deleteForward(editor, {
+-              unit: 'line'
+-            });
+-            break;
+-          }
++        {
++          slate.Editor.deleteBackward(editor, {
++            unit: 'line'
++          });
++          slate.Editor.deleteForward(editor, {
++            unit: 'line'
++          });
++          break;
++        }
+         case 'deleteHardLineBackward':
+-          {
+-            slate.Editor.deleteBackward(editor, {
+-              unit: 'block'
+-            });
+-            break;
+-          }
++        {
++          slate.Editor.deleteBackward(editor, {
++            unit: 'block'
++          });
++          break;
++        }
+         case 'deleteSoftLineBackward':
+-          {
+-            slate.Editor.deleteBackward(editor, {
+-              unit: 'line'
+-            });
+-            break;
+-          }
++        {
++          slate.Editor.deleteBackward(editor, {
++            unit: 'line'
++          });
++          break;
++        }
+         case 'deleteHardLineForward':
+-          {
+-            slate.Editor.deleteForward(editor, {
+-              unit: 'block'
+-            });
+-            break;
+-          }
++        {
++          slate.Editor.deleteForward(editor, {
++            unit: 'block'
++          });
++          break;
++        }
+         case 'deleteSoftLineForward':
+-          {
+-            slate.Editor.deleteForward(editor, {
+-              unit: 'line'
+-            });
+-            break;
+-          }
++        {
++          slate.Editor.deleteForward(editor, {
++            unit: 'line'
++          });
++          break;
++        }
+         case 'deleteWordBackward':
+-          {
+-            slate.Editor.deleteBackward(editor, {
+-              unit: 'word'
+-            });
+-            break;
+-          }
++        {
++          slate.Editor.deleteBackward(editor, {
++            unit: 'word'
++          });
++          break;
++        }
+         case 'deleteWordForward':
+-          {
+-            slate.Editor.deleteForward(editor, {
+-              unit: 'word'
+-            });
+-            break;
+-          }
++        {
++          slate.Editor.deleteForward(editor, {
++            unit: 'word'
++          });
++          break;
++        }
+         case 'insertLineBreak':
+           slate.Editor.insertSoftBreak(editor);
+           break;
+         case 'insertParagraph':
+-          {
+-            slate.Editor.insertBreak(editor);
+-            break;
+-          }
++        {
++          slate.Editor.insertBreak(editor);
++          break;
++        }
+         case 'insertFromComposition':
+         case 'insertFromDrop':
+         case 'insertFromPaste':
+         case 'insertFromYank':
+         case 'insertReplacementText':
+         case 'insertText':
+-          {
+-            if (type === 'insertFromComposition') {
+-              // COMPAT: in Safari, `compositionend` is dispatched after the
+-              // `beforeinput` for "insertFromComposition". But if we wait for it
+-              // then we will abort because we're still composing and the selection
+-              // won't be updated properly.
+-              // https://www.w3.org/TR/input-events-2/
+-              if (ReactEditor.isComposing(editor)) {
+-                setIsComposing(false);
+-                IS_COMPOSING.set(editor, false);
+-              }
++        {
++          if (type === 'insertFromComposition') {
++            // COMPAT: in Safari, `compositionend` is dispatched after the
++            // `beforeinput` for "insertFromComposition". But if we wait for it
++            // then we will abort because we're still composing and the selection
++            // won't be updated properly.
++            // https://www.w3.org/TR/input-events-2/
++            if (ReactEditor.isComposing(editor)) {
++              setIsComposing(false);
++              IS_COMPOSING.set(editor, false);
+             }
+-            // use a weak comparison instead of 'instanceof' to allow
+-            // programmatic access of paste events coming from external windows
+-            // like cypress where cy.window does not work realibly
+-            if ((data === null || data === void 0 ? void 0 : data.constructor.name) === 'DataTransfer') {
+-              ReactEditor.insertData(editor, data);
+-            } else if (typeof data === 'string') {
+-              // Only insertText operations use the native functionality, for now.
+-              // Potentially expand to single character deletes, as well.
+-              if (_native) {
+-                deferredOperations.current.push(function () {
+-                  return slate.Editor.insertText(editor, data);
+-                });
+-              } else {
+-                slate.Editor.insertText(editor, data);
+-              }
++          }
++          // use a weak comparison instead of 'instanceof' to allow
++          // programmatic access of paste events coming from external windows
++          // like cypress where cy.window does not work realibly
++          if ((data === null || data === void 0 ? void 0 : data.constructor.name) === 'DataTransfer') {
++            ReactEditor.insertData(editor, data);
++          } else if (typeof data === 'string') {
++            // Only insertText operations use the native functionality, for now.
++            // Potentially expand to single character deletes, as well.
++            if (_native) {
++              deferredOperations.current.push(function () {
++                return slate.Editor.insertText(editor, data);
++              });
++            } else {
++              slate.Editor.insertText(editor, data);
+             }
+-            break;
+           }
++          break;
++        }
+       }
+       // Restore the actual user section if nothing manually set it.
+       var toRestore = (_EDITOR_TO_USER_SELEC = EDITOR_TO_USER_SELECTION.get(editor)) === null || _EDITOR_TO_USER_SELEC === void 0 ? void 0 : _EDITOR_TO_USER_SELEC.unref();
+@@ -3818,7 +3818,7 @@ var Editable = function Editable(props) {
+     var anchor = editor.selection.anchor;
+     var leaf = slate.Node.leaf(editor, anchor.path);
+     leaf.text;
+-      var rest = _objectWithoutProperties(leaf, _excluded2);
++    var rest = _objectWithoutProperties(leaf, _excluded2);
+     // While marks isn't a 'complete' text, we can still use loose Text.equals
+     // here which only compares marks anyway.
+     if (!slate.Text.equals(leaf, marks, {
+@@ -4585,34 +4585,34 @@ function useSlateSelector(selector) {
+     latestSubscriptionCallbackError.current = undefined;
+   });
+   useIsomorphicLayoutEffect(function () {
+-    function checkForUpdates() {
+-      try {
+-        var newSelectedState = latestSelector.current(getSlate());
+-        if (equalityFn(newSelectedState, latestSelectedState.current)) {
+-          return;
+-        }
+-        latestSelectedState.current = newSelectedState;
+-      } catch (err) {
+-        // we ignore all errors here, since when the component
+-        // is re-rendered, the selectors are called again, and
+-        // will throw again, if neither props nor store state
+-        // changed
+-        if (err instanceof Error) {
+-          latestSubscriptionCallbackError.current = err;
+-        } else {
+-          latestSubscriptionCallbackError.current = new Error(String(err));
++      function checkForUpdates() {
++        try {
++          var newSelectedState = latestSelector.current(getSlate());
++          if (equalityFn(newSelectedState, latestSelectedState.current)) {
++            return;
++          }
++          latestSelectedState.current = newSelectedState;
++        } catch (err) {
++          // we ignore all errors here, since when the component
++          // is re-rendered, the selectors are called again, and
++          // will throw again, if neither props nor store state
++          // changed
++          if (err instanceof Error) {
++            latestSubscriptionCallbackError.current = err;
++          } else {
++            latestSubscriptionCallbackError.current = new Error(String(err));
++          }
+         }
++        forceRender();
+       }
+-      forceRender();
+-    }
+-    var unsubscribe = addEventListener(checkForUpdates);
+-    checkForUpdates();
+-    return function () {
+-      return unsubscribe();
+-    };
+-  },
+-  // don't rerender on equalityFn change since we want to be able to define it inline
+-  [addEventListener, getSlate]);
++      var unsubscribe = addEventListener(checkForUpdates);
++      checkForUpdates();
++      return function () {
++        return unsubscribe();
++      };
++    },
++    // don't rerender on equalityFn change since we want to be able to define it inline
++    [addEventListener, getSlate]);
+   return selectedState;
+ }
+ /**
+@@ -4917,48 +4917,48 @@ var withReact = function withReact(editor) {
+       case 'remove_text':
+       case 'set_node':
+       case 'split_node':
+-        {
+-          matches.push.apply(matches, _toConsumableArray(getMatches(e, op.path)));
+-          break;
+-        }
++      {
++        matches.push.apply(matches, _toConsumableArray(getMatches(e, op.path)));
++        break;
++      }
+       case 'set_selection':
+-        {
+-          var _EDITOR_TO_USER_SELEC;
+-          // Selection was manually set, don't restore the user selection after the change.
+-          (_EDITOR_TO_USER_SELEC = EDITOR_TO_USER_SELECTION.get(e)) === null || _EDITOR_TO_USER_SELEC === void 0 || _EDITOR_TO_USER_SELEC.unref();
+-          EDITOR_TO_USER_SELECTION["delete"](e);
+-          break;
+-        }
++      {
++        var _EDITOR_TO_USER_SELEC;
++        // Selection was manually set, don't restore the user selection after the change.
++        (_EDITOR_TO_USER_SELEC = EDITOR_TO_USER_SELECTION.get(e)) === null || _EDITOR_TO_USER_SELEC === void 0 || _EDITOR_TO_USER_SELEC.unref();
++        EDITOR_TO_USER_SELECTION["delete"](e);
++        break;
++      }
+       case 'insert_node':
+       case 'remove_node':
+-        {
+-          matches.push.apply(matches, _toConsumableArray(getMatches(e, slate.Path.parent(op.path))));
+-          break;
+-        }
++      {
++        matches.push.apply(matches, _toConsumableArray(getMatches(e, slate.Path.parent(op.path))));
++        break;
++      }
+       case 'merge_node':
+-        {
+-          var prevPath = slate.Path.previous(op.path);
+-          matches.push.apply(matches, _toConsumableArray(getMatches(e, prevPath)));
+-          break;
+-        }
++      {
++        var prevPath = slate.Path.previous(op.path);
++        matches.push.apply(matches, _toConsumableArray(getMatches(e, prevPath)));
++        break;
++      }
+       case 'move_node':
+-        {
+-          var commonPath = slate.Path.common(slate.Path.parent(op.path), slate.Path.parent(op.newPath));
+-          matches.push.apply(matches, _toConsumableArray(getMatches(e, commonPath)));
+-          var changedPath;
+-          if (slate.Path.isBefore(op.path, op.newPath)) {
+-            matches.push.apply(matches, _toConsumableArray(getMatches(e, slate.Path.parent(op.path))));
+-            changedPath = op.newPath;
+-          } else {
+-            matches.push.apply(matches, _toConsumableArray(getMatches(e, slate.Path.parent(op.newPath))));
+-            changedPath = op.path;
+-          }
+-          var changedNode = slate.Node.get(editor, slate.Path.parent(changedPath));
+-          var changedNodeKey = ReactEditor.findKey(e, changedNode);
+-          var changedPathRef = slate.Editor.pathRef(e, slate.Path.parent(changedPath));
+-          pathRefMatches.push([changedPathRef, changedNodeKey]);
+-          break;
++      {
++        var commonPath = slate.Path.common(slate.Path.parent(op.path), slate.Path.parent(op.newPath));
++        matches.push.apply(matches, _toConsumableArray(getMatches(e, commonPath)));
++        var changedPath;
++        if (slate.Path.isBefore(op.path, op.newPath)) {
++          matches.push.apply(matches, _toConsumableArray(getMatches(e, slate.Path.parent(op.path))));
++          changedPath = op.newPath;
++        } else {
++          matches.push.apply(matches, _toConsumableArray(getMatches(e, slate.Path.parent(op.newPath))));
++          changedPath = op.path;
+         }
++        var changedNode = slate.Node.get(editor, slate.Path.parent(changedPath));
++        var changedNodeKey = ReactEditor.findKey(e, changedNode);
++        var changedPathRef = slate.Editor.pathRef(e, slate.Path.parent(changedPath));
++        pathRefMatches.push([changedPathRef, changedNodeKey]);
++        break;
++      }
+     }
+     apply(op);
+     for (var _i = 0, _matches = matches; _i < _matches.length; _i++) {
