@@ -4,36 +4,22 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  '@react-aria/focus@3.17.1':
-    hash: uark2i53r3wvuz3dlf3bgpu2ju
-    path: patches/@react-aria__focus@3.17.1.patch
-  '@react-aria/interactions@3.21.3':
-    hash: krqm2hg3dpnsxqv3zvrcn7dx3u
-    path: patches/@react-aria__interactions@3.21.3.patch
-  '@react-aria/utils@3.24.1':
-    hash: 6ldjsqfqi3lxe4jhhlb26oibp4
-    path: patches/@react-aria__utils@3.24.1.patch
-
 importers:
 
   .:
     dependencies:
       '@baseline-ui/core':
-        specifier: 0.23.0
-        version: 0.23.0(@types/react@17.0.80)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)
+        specifier: canary
+        version: 0.0.0-canary-20240724103021(@types/react@17.0.80)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)
       '@baseline-ui/recipes':
-        specifier: 0.23.0
-        version: 0.23.0(@types/react@17.0.80)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)
+        specifier: canary
+        version: 0.0.0-canary-20240724103021(@types/react@17.0.80)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)
       '@baseline-ui/tokens':
-        specifier: 0.23.0
-        version: 0.23.0
+        specifier: canary
+        version: 0.0.0-canary-20240724103021
       next:
         specifier: 14.2.5
         version: 14.2.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      patch-package:
-        specifier: ^8.0.0
-        version: 8.0.0
       pspdfkit:
         specifier: ^2024.4.0
         version: 2024.4.0
@@ -70,44 +56,44 @@ packages:
     resolution: {integrity: sha512-5F7SDGs1T72ZczbRwbGO9lQi0NLjQxzl6i4lJxLxfW9U5UluCSyEJeniWvnhl3/euNiqQVbo8zruhsDfid0esA==}
     engines: {node: '>=6.9.0'}
 
-  '@baseline-ui/app@0.23.0':
-    resolution: {integrity: sha512-VDmCWY1uePuGE1cvV//6JB3U1vPIvSiiUlbgSCQ/sd/QBwTGLgaxIPvCRLgBWmd/CTDVWCGYpvQsXVHWWTSSbA==}
+  '@baseline-ui/app@0.0.0-canary-20240724103021':
+    resolution: {integrity: sha512-jEmnXY8V5pMmM2fWBd6Hm/P07M2F8qG8bvPK+OEcKs/1zFgpe0lqVU/rUsKnrrLPNl20t3AVSBk20dBVkJPYbA==}
     peerDependencies:
       react: ^17.0.2 || ^18.0.0
       react-dom: ^17.0.2 || ^18.0.0
 
-  '@baseline-ui/blocks@0.23.0':
-    resolution: {integrity: sha512-uTlkxRq3Ip1aukSk7iRGyYY/iUZNmblOUORgL5upijWoCwz8u/jYT1Zk4hqNbD5+WW0gfo7nuR+aMgc9rtXNWw==}
+  '@baseline-ui/blocks@0.0.0-canary-20240724103021':
+    resolution: {integrity: sha512-wqCJ5aA4p6B7Esxwh+aVO4ee17+vkRY90TD7jqMYItFluCFE8hQwyBNFgTjTYlayBEqfzjNgSuQ39Hsqk1ENZw==}
     peerDependencies:
       react: ^17.0.2 || ^18.0.0
       react-dom: ^17.0.2 || ^18.0.0
 
-  '@baseline-ui/core@0.23.0':
-    resolution: {integrity: sha512-ijAz2zRvLzg6kdycxLGq0QlgRSlPMVJdpplsrzCuOjmEZL4GBSdblzFtL6nrujhOZAxcA78ikS3igDbToSDU1w==}
+  '@baseline-ui/core@0.0.0-canary-20240724103021':
+    resolution: {integrity: sha512-hQUcSLrSw5F40AVlpH5aptYArAYvMnAVTFeN70Wt128ql/O7I/AulGHfZcR9EZrB9xJESJBAg29i80/1i8P/uQ==}
     peerDependencies:
       react: ^17.0.2 || ^18.0.0
       react-dom: ^17.0.2 || ^18.0.0
 
-  '@baseline-ui/icons@0.23.0':
-    resolution: {integrity: sha512-YbYVjU1n4MaMhFoWN5NLG/7FqyCTGOSdXuEAUGGJcES696Mp/n4lVKy2CHtQB9Hx+DAqZikWMkClbtb9Jg3OWA==}
+  '@baseline-ui/icons@0.0.0-canary-20240724103021':
+    resolution: {integrity: sha512-BN4FlEsc70I+91GSICpDCCnyyxNULzNw4aM+BMFKudCU58RAG7KKshEG3JhaLWL6CSUv6kFc/lg1NJMFjeN4/A==}
     peerDependencies:
       react: ^17.0.2 || ^18.0.0
       react-dom: ^17.0.2 || ^18.0.0
 
-  '@baseline-ui/recipes@0.23.0':
-    resolution: {integrity: sha512-pyWsBbrtrhnTBdqAaP/04HeugMpInE3UL0CVIwtpozQkfey+LRLXuKum7fXTj6EQoRawCJnrgT7NytktphwsMQ==}
+  '@baseline-ui/recipes@0.0.0-canary-20240724103021':
+    resolution: {integrity: sha512-i02bVzWRpUACWt7YNVqGukp21xM9AWJBGU/+d48V99lsHi7SL0LgRZ6Jp+u8ASFnOl5iT4+1mqNFP7/SOxZFVg==}
     peerDependencies:
       react: ^17.0.2 || ^18.0.0
       react-dom: ^17.0.2 || ^18.0.0
 
-  '@baseline-ui/tokens@0.23.0':
-    resolution: {integrity: sha512-J9OvMAOIRN6zNl1ccT/XQHq2/CjHDkibQdki9OoJuzshLu4BesQ1xDSHQMdKZN6jGapXIO+c31GN41Xj8EXNKg==}
+  '@baseline-ui/tokens@0.0.0-canary-20240724103021':
+    resolution: {integrity: sha512-iYgEaIQ5v2/TfiWD5+OW/4G7fUoX68yChXyVKidhWOEDQ0CbTULohSQz7InTB3sGr1qyGGExtgfNaylsN6+iww==}
 
-  '@baseline-ui/translations@0.23.0':
-    resolution: {integrity: sha512-VPKdIqI4KZGwT8X4oFw08Ql11VBW+qBEXirQIKjjbDjpb7V9X4bqJyNLYSSnax5LGEYV6+PGvKq0sb4yTf//cg==}
+  '@baseline-ui/translations@0.0.0-canary-20240724103021':
+    resolution: {integrity: sha512-+Dqt2z2rkR8JFLCBEpuXMaUvO6uIwDKXV45UH5ft9TeYPm18EY8SRiiVm8YmAXQe15aOYIC8NC/IGOaPyXXccQ==}
 
-  '@baseline-ui/utils@0.23.0':
-    resolution: {integrity: sha512-PjF8PRBS9pXVf/boY7lvI0KyiPXmq22K0oWBBcK9g9lKKrkoxaV+2Ts7ZO5CIIHKKdir1mdthp2Kj5UM+R7rig==}
+  '@baseline-ui/utils@0.0.0-canary-20240724103021':
+    resolution: {integrity: sha512-B19r9cKTSUv4574tdCwMFpiWxpFRoxMJHnh6RGupIZ6rnBCs+ViXmFQnz6I48cRHkz5I7wq0OoLPJ2l9ZiBHeA==}
     peerDependencies:
       react: ^17.0.2 || ^18.0.0
 
@@ -610,12 +596,6 @@ packages:
 
   '@react-spring/types@9.7.4':
     resolution: {integrity: sha512-iQVztO09ZVfsletMiY+DpT/JRiBntdsdJ4uqk3UJFhrhS8mIC9ZOZbmfGSRs/kdbNPQkVyzucceDicQ/3Mlj9g==}
-
-  '@react-spring/web@9.7.3':
-    resolution: {integrity: sha512-BXt6BpS9aJL/QdVqEIX9YoUy8CE6TJrU0mNCqSoxdXlIeNcEBWOfIyE6B14ENNsyQKS3wOWkiJfco0tCr/9tUg==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
 
   '@react-spring/web@9.7.4':
     resolution: {integrity: sha512-UMvCZp7I5HCVIleSa4BwbNxynqvj+mJjG2m20VO2yPoi2pnCYANy58flvz9v/YcXTAvsmL655FV3pm5fbr6akA==}
@@ -1127,9 +1107,6 @@ packages:
   '@vanilla-extract/private@1.0.5':
     resolution: {integrity: sha512-6YXeOEKYTA3UV+RC8DeAjFk+/okoNz/h88R+McnzA2zpaVqTR/Ep+vszkWYlGBcMNO7vEkqbq5nT/JMMvhi+tw==}
 
-  '@yarnpkg/lockfile@1.1.0':
-    resolution: {integrity: sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==}
-
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -1221,10 +1198,6 @@ packages:
   ast-types-flow@0.0.8:
     resolution: {integrity: sha512-OH/2E5Fg20h2aPrbe+QL8JZQFko0YZaF+j4mnQ7BGhfavO7OpSLa8a0y9sBwomHdSbkhTS8TQNayBfnW5DwbvQ==}
 
-  at-least-node@1.0.0:
-    resolution: {integrity: sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==}
-    engines: {node: '>= 4.0.0'}
-
   available-typed-arrays@1.0.7:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
@@ -1279,10 +1252,6 @@ packages:
   chokidar@3.6.0:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
     engines: {node: '>= 8.10.0'}
-
-  ci-info@3.9.0:
-    resolution: {integrity: sha512-NIxF55hv4nSqQswkAeiOi1r83xy8JldOFDTWiug55KBu9Jnblncd2U6ViHmYgHf01TPZS77NJBhBMKdWj9HQMQ==}
-    engines: {node: '>=8'}
 
   class-variance-authority@0.7.0:
     resolution: {integrity: sha512-jFI8IQw4hczaL4ALINxqLEXQbWcNjoSkloa4IaufXCJr6QawJyw7tuRysRsrE8w2p/4gGaxKIt/hX3qz/IbD1A==}
@@ -1605,9 +1574,6 @@ packages:
     resolution: {integrity: sha512-78/PXT1wlLLDgTzDs7sjq9hzz0vXD+zn+7wypEe4fXQxCmdmqfGsEPQxmiCSQI3ajFV91bVSsvNtrJRiW6nGng==}
     engines: {node: '>=10'}
 
-  find-yarn-workspace-root@2.0.0:
-    resolution: {integrity: sha512-1IMnbjt4KzsQfnhnzNd8wUEgXZ44IzZaZmnLYx7D5FZlaHt2gW20Cri8Q+E/t5tIj4+epTBub+2Zxu/vNILzqQ==}
-
   flat-cache@3.2.0:
     resolution: {integrity: sha512-CYcENa+FtcUKLmhhqyctpclsq7QF38pKjZHsGNiSQF5r4FtoKDWabFDl3hzaEQMvT1LHEysw5twgLvpYYb4vbw==}
     engines: {node: ^10.12.0 || >=12.0.0}
@@ -1624,10 +1590,6 @@ packages:
 
   framework-utils@1.1.0:
     resolution: {integrity: sha512-KAfqli5PwpFJ8o3psRNs8svpMGyCSAe8nmGcjQ0zZBWN2H6dZDnq+ABp3N3hdUmFeMrLtjOCTXD4yplUJIWceg==}
-
-  fs-extra@9.1.0:
-    resolution: {integrity: sha512-hcg3ZmepS30/7BSFqRvoo3DOMQu7IjqxO5nCDt+zM9XWjb33Wg7ziNT+Qvqbuc3+gWpzO02JubVyk2G4Zvo1OQ==}
-    engines: {node: '>=10'}
 
   fs.realpath@1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
@@ -1802,11 +1764,6 @@ packages:
     resolution: {integrity: sha512-9YQaSxsAiSwcvS33MBk3wTCVnWK+HhF8VZR2jRxehM16QcVOdHqPn4VPHmRK4lSr38n9JriurInLcP90xsYNfQ==}
     engines: {node: '>= 0.4'}
 
-  is-docker@2.2.1:
-    resolution: {integrity: sha512-F+i2BKsFrH66iaUFc0woD8sLy8getkwTwtOBjvs56Cx4CgJDeKQeqfz8wAYiSb8JOprWhHH5p77PbmYCvvUuXQ==}
-    engines: {node: '>=8'}
-    hasBin: true
-
   is-extglob@2.1.1:
     resolution: {integrity: sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==}
     engines: {node: '>=0.10.0'}
@@ -1888,10 +1845,6 @@ packages:
     resolution: {integrity: sha512-LvIm3/KWzS9oRFHugab7d+M/GcBXuXX5xZkzPmN+NxihdQlZUQ4dWuSV1xR/sq6upL1TJEDrfBgRepHFdBtSNQ==}
     engines: {node: '>= 0.4'}
 
-  is-wsl@2.2.0:
-    resolution: {integrity: sha512-fKzAra0rGJUUBwGBgNkHZuToZcn+TtXHpeCgmkMJMMYx1sQDYaCSyjJBSCa2nH1DGm7s3n1oBnohoVTBaN7Lww==}
-    engines: {node: '>=8'}
-
   isarray@2.0.5:
     resolution: {integrity: sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==}
 
@@ -1958,19 +1911,9 @@ packages:
   json-stable-stringify-without-jsonify@1.0.1:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
 
-  json-stable-stringify@1.1.1:
-    resolution: {integrity: sha512-SU/971Kt5qVQfJpyDveVhQ/vya+5hvrjClFOcr8c0Fq5aODJjMwutrOfCU+eCnVD5gpx1Q3fEqkyom77zH1iIg==}
-    engines: {node: '>= 0.4'}
-
   json5@1.0.2:
     resolution: {integrity: sha512-g1MWMLBiz8FKi1e4w0UyVL3w+iJceWAFBAaBnnGKOpNa5f8TLktkbre1+s6oICydWAm+HRUGTmI+//xv2hvXYA==}
     hasBin: true
-
-  jsonfile@6.1.0:
-    resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
-
-  jsonify@0.0.1:
-    resolution: {integrity: sha512-2/Ki0GcmuqSrgFyelQq9M05y7PS0mEwuIzrf3f1fPqkVDVRvZrPZtVSMHxdgo8Aq0sxAOb/cr2aqqA3LeWHVPg==}
 
   jsx-ast-utils@3.3.5:
     resolution: {integrity: sha512-ZZow9HBI5O6EPgSJLUb8n2NKgmVWTwCvHGwFuJlMjvLFqlGG6pjirPhtdsseaLZjSibD8eegzmYpUZwoIlj2cQ==}
@@ -1984,9 +1927,6 @@ packages:
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
-
-  klaw-sync@6.0.0:
-    resolution: {integrity: sha512-nIeuVSzdCCs6TDPTqI8w1Yre34sSq7AkZ4B3sfOBbI2CgVSB4Du4aLQijFU2+lhAFCwt9+42Hel6lQNIv6AntQ==}
 
   language-subtag-registry@0.3.23:
     resolution: {integrity: sha512-0K65Lea881pHotoGEa5gDlMxt3pctLi2RplBb7Ezh4rRdLEOtgi7n4EwK9lamnUCkKBqaeKRVebTq6BAxSkpXQ==}
@@ -2152,20 +2092,12 @@ packages:
   once@1.4.0:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
 
-  open@7.4.2:
-    resolution: {integrity: sha512-MVHddDVweXZF3awtlAS+6pgKLlm/JgxZ90+/NBurBoQctVOOB/zDdVjcyPzQ+0laDGbsWgrRkflI65sQeOgT9Q==}
-    engines: {node: '>=8'}
-
   optics-ts@2.4.1:
     resolution: {integrity: sha512-HaYzMHvC80r7U/LqAd4hQyopDezC60PO2qF5GuIwALut2cl5rK1VWHsqTp0oqoJJWjiv6uXKqsO+Q2OO0C3MmQ==}
 
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
-
-  os-tmpdir@1.0.2:
-    resolution: {integrity: sha512-D2FR03Vir7FIu45XBY20mTb+/ZSWB00sjU9jdQXt83gDrI4Ztz5Fs7/yy74g2N5SVQY4xY1qDr4rNddwYRVX0g==}
-    engines: {node: '>=0.10.0'}
 
   overlap-area@1.1.0:
     resolution: {integrity: sha512-3dlJgJCaVeXH0/eZjYVJvQiLVVrPO4U1ZGqlATtx6QGO3b5eNM6+JgUKa7oStBTdYuGTk7gVoABCW6Tp+dhRdw==}
@@ -2184,11 +2116,6 @@ packages:
   parent-module@1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
     engines: {node: '>=6'}
-
-  patch-package@8.0.0:
-    resolution: {integrity: sha512-da8BVIhzjtgScwDJ2TtKsfT5JFWz1hYoBl9rUQ1f38MC2HwnEIkK8VN3dKMKcP7P7bvvgzNDbfNHtx3MsQb5vA==}
-    engines: {node: '>=14', npm: '>5'}
-    hasBin: true
 
   path-exists@4.0.0:
     resolution: {integrity: sha512-ak9Qy5Q7jYb2Wwcey5Fpvg2KoAc/ZIhLSLOSBmRmygPsGwkVVt0fZa0qrtMz+m6tJTAHfZQ8FnmB4MG4LWy7/w==}
@@ -2401,11 +2328,6 @@ packages:
     resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
 
-  rimraf@2.7.1:
-    resolution: {integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==}
-    deprecated: Rimraf versions prior to v4 are no longer supported
-    hasBin: true
-
   rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     deprecated: Rimraf versions prior to v4 are no longer supported
@@ -2463,10 +2385,6 @@ packages:
   signal-exit@4.1.0:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
-
-  slash@2.0.0:
-    resolution: {integrity: sha512-ZYKh3Wh2z1PpEXWr0MpSBZ0V6mZHAQfYevttO11c51CaWjGTaadiKZ+wVt1PbMlDV5qhMFslpZCemhwOK7C89A==}
-    engines: {node: '>=6'}
 
   slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
@@ -2603,10 +2521,6 @@ packages:
   tiny-warning@1.0.3:
     resolution: {integrity: sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==}
 
-  tmp@0.0.33:
-    resolution: {integrity: sha512-jRCJlojKnZ3addtTOjdIqoRuPEKBvNXcGYqzO6zWZX8KfKEpnGY5jfggJQ3EjKuu8D4bJRr0y+cYJFmYbImXGw==}
-    engines: {node: '>=0.6.0'}
-
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
@@ -2660,10 +2574,6 @@ packages:
 
   unbox-primitive@1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
-
-  universalify@2.0.1:
-    resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
-    engines: {node: '>= 10.0.0'}
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
@@ -2766,14 +2676,14 @@ snapshots:
     dependencies:
       regenerator-runtime: 0.14.1
 
-  '@baseline-ui/app@0.23.0(@types/react@17.0.80)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)':
+  '@baseline-ui/app@0.0.0-canary-20240724103021(@types/react@17.0.80)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)':
     dependencies:
-      '@baseline-ui/core': 0.23.0(@types/react@17.0.80)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)
-      '@baseline-ui/icons': 0.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@baseline-ui/tokens': 0.23.0
-      '@baseline-ui/translations': 0.23.0(react@18.3.1)
-      '@baseline-ui/utils': 0.23.0(react@18.3.1)
-      '@react-aria/utils': 3.24.1(patch_hash=6ldjsqfqi3lxe4jhhlb26oibp4)(react@18.3.1)
+      '@baseline-ui/core': 0.0.0-canary-20240724103021(@types/react@17.0.80)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)
+      '@baseline-ui/icons': 0.0.0-canary-20240724103021(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@baseline-ui/tokens': 0.0.0-canary-20240724103021
+      '@baseline-ui/translations': 0.0.0-canary-20240724103021(react@18.3.1)
+      '@baseline-ui/utils': 0.0.0-canary-20240724103021(react@18.3.1)
+      '@react-aria/utils': 3.24.1(react@18.3.1)
       '@react-spring/web': 9.7.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-types/shared': 3.23.1(react@18.3.1)
       dompurify: 3.1.6
@@ -2787,26 +2697,26 @@ snapshots:
       - react-native
       - scheduler
 
-  '@baseline-ui/blocks@0.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@baseline-ui/blocks@0.0.0-canary-20240724103021(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@baseline-ui/tokens': 0.23.0
-      '@baseline-ui/utils': 0.23.0(react@18.3.1)
+      '@baseline-ui/tokens': 0.0.0-canary-20240724103021
+      '@baseline-ui/utils': 0.0.0-canary-20240724103021(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@baseline-ui/core@0.23.0(@types/react@17.0.80)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)':
+  '@baseline-ui/core@0.0.0-canary-20240724103021(@types/react@17.0.80)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)':
     dependencies:
-      '@baseline-ui/icons': 0.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@baseline-ui/tokens': 0.23.0
-      '@baseline-ui/utils': 0.23.0(react@18.3.1)
+      '@baseline-ui/icons': 0.0.0-canary-20240724103021(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@baseline-ui/tokens': 0.0.0-canary-20240724103021
+      '@baseline-ui/utils': 0.0.0-canary-20240724103021(react@18.3.1)
       '@radix-ui/react-slot': 1.0.2(@types/react@17.0.80)(react@18.3.1)
       '@react-aria/color': 3.0.0-beta.33(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/focus': 3.17.1(patch_hash=uark2i53r3wvuz3dlf3bgpu2ju)(react@18.3.1)
-      '@react-aria/interactions': 3.21.3(patch_hash=krqm2hg3dpnsxqv3zvrcn7dx3u)(react@18.3.1)
+      '@react-aria/focus': 3.17.1(react@18.3.1)
+      '@react-aria/interactions': 3.21.3(react@18.3.1)
       '@react-aria/live-announcer': 3.3.2
       '@react-aria/toolbar': 3.0.0-beta.5(react@18.3.1)
-      '@react-aria/utils': 3.24.1(patch_hash=6ldjsqfqi3lxe4jhhlb26oibp4)(react@18.3.1)
-      '@react-spring/web': 9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@react-aria/utils': 3.24.1(react@18.3.1)
+      '@react-spring/web': 9.7.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-stately/color': 3.6.1(react@18.3.1)
       '@react-stately/utils': 3.9.1(react@18.3.1)
       '@react-types/shared': 3.23.1(react@18.3.1)
@@ -2841,25 +2751,25 @@ snapshots:
       - react-native
       - scheduler
 
-  '@baseline-ui/icons@0.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@baseline-ui/icons@0.0.0-canary-20240724103021(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@baseline-ui/utils': 0.23.0(react@18.3.1)
-      '@react-aria/utils': 3.24.1(patch_hash=6ldjsqfqi3lxe4jhhlb26oibp4)(react@18.3.1)
+      '@baseline-ui/utils': 0.0.0-canary-20240724103021(react@18.3.1)
+      '@react-aria/utils': 3.24.1(react@18.3.1)
       dompurify: 3.1.6
       react: 18.3.1
       react-aria: 3.33.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-dom: 18.3.1(react@18.3.1)
 
-  '@baseline-ui/recipes@0.23.0(@types/react@17.0.80)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)':
+  '@baseline-ui/recipes@0.0.0-canary-20240724103021(@types/react@17.0.80)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)':
     dependencies:
-      '@baseline-ui/app': 0.23.0(@types/react@17.0.80)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)
-      '@baseline-ui/blocks': 0.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@baseline-ui/core': 0.23.0(@types/react@17.0.80)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)
-      '@baseline-ui/icons': 0.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@baseline-ui/tokens': 0.23.0
-      '@baseline-ui/translations': 0.23.0(react@18.3.1)
-      '@baseline-ui/utils': 0.23.0(react@18.3.1)
-      '@react-aria/utils': 3.24.1(patch_hash=6ldjsqfqi3lxe4jhhlb26oibp4)(react@18.3.1)
+      '@baseline-ui/app': 0.0.0-canary-20240724103021(@types/react@17.0.80)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)
+      '@baseline-ui/blocks': 0.0.0-canary-20240724103021(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@baseline-ui/core': 0.0.0-canary-20240724103021(@types/react@17.0.80)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)
+      '@baseline-ui/icons': 0.0.0-canary-20240724103021(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@baseline-ui/tokens': 0.0.0-canary-20240724103021
+      '@baseline-ui/translations': 0.0.0-canary-20240724103021(react@18.3.1)
+      '@baseline-ui/utils': 0.0.0-canary-20240724103021(react@18.3.1)
+      '@react-aria/utils': 3.24.1(react@18.3.1)
       '@react-spring/web': 9.7.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-stately/color': 3.6.1(react@18.3.1)
       '@react-types/shared': 3.23.1(react@18.3.1)
@@ -2874,20 +2784,20 @@ snapshots:
       - react-native
       - scheduler
 
-  '@baseline-ui/tokens@0.23.0':
+  '@baseline-ui/tokens@0.0.0-canary-20240724103021':
     dependencies:
       lodash: 4.17.21
 
-  '@baseline-ui/translations@0.23.0(react@18.3.1)':
+  '@baseline-ui/translations@0.0.0-canary-20240724103021(react@18.3.1)':
     dependencies:
-      '@baseline-ui/utils': 0.23.0(react@18.3.1)
+      '@baseline-ui/utils': 0.0.0-canary-20240724103021(react@18.3.1)
       lodash: 4.17.21
     transitivePeerDependencies:
       - react
 
-  '@baseline-ui/utils@0.23.0(react@18.3.1)':
+  '@baseline-ui/utils@0.0.0-canary-20240724103021(react@18.3.1)':
     dependencies:
-      '@react-aria/utils': 3.24.1(patch_hash=6ldjsqfqi3lxe4jhhlb26oibp4)(react@18.3.1)
+      '@react-aria/utils': 3.24.1(react@18.3.1)
       '@react-stately/color': 3.6.1(react@18.3.1)
       dompurify: 3.1.6
       react: 18.3.1
@@ -3251,7 +3161,7 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@react-aria/focus@3.17.1(patch_hash=uark2i53r3wvuz3dlf3bgpu2ju)(react@18.3.1)':
+  '@react-aria/focus@3.17.1(react@18.3.1)':
     dependencies:
       '@react-aria/interactions': 3.22.1(react@18.3.1)
       '@react-aria/utils': 3.25.1(react@18.3.1)
@@ -3324,7 +3234,7 @@ snapshots:
       '@swc/helpers': 0.5.5
       react: 18.3.1
 
-  '@react-aria/interactions@3.21.3(patch_hash=krqm2hg3dpnsxqv3zvrcn7dx3u)(react@18.3.1)':
+  '@react-aria/interactions@3.21.3(react@18.3.1)':
     dependencies:
       '@react-aria/ssr': 3.9.5(react@18.3.1)
       '@react-aria/utils': 3.25.1(react@18.3.1)
@@ -3641,7 +3551,7 @@ snapshots:
       '@swc/helpers': 0.5.5
       react: 18.3.1
 
-  '@react-aria/utils@3.24.1(patch_hash=6ldjsqfqi3lxe4jhhlb26oibp4)(react@18.3.1)':
+  '@react-aria/utils@3.24.1(react@18.3.1)':
     dependencies:
       '@react-aria/ssr': 3.9.5(react@18.3.1)
       '@react-stately/utils': 3.10.2(react@18.3.1)
@@ -3689,15 +3599,6 @@ snapshots:
       react: 18.3.1
 
   '@react-spring/types@9.7.4': {}
-
-  '@react-spring/web@9.7.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@react-spring/animated': 9.7.4(react@18.3.1)
-      '@react-spring/core': 9.7.4(react@18.3.1)
-      '@react-spring/shared': 9.7.4(react@18.3.1)
-      '@react-spring/types': 9.7.4
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
 
   '@react-spring/web@9.7.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -4386,8 +4287,6 @@ snapshots:
 
   '@vanilla-extract/private@1.0.5': {}
 
-  '@yarnpkg/lockfile@1.1.0': {}
-
   acorn-jsx@5.3.2(acorn@8.12.1):
     dependencies:
       acorn: 8.12.1
@@ -4506,8 +4405,6 @@ snapshots:
 
   ast-types-flow@0.0.8: {}
 
-  at-least-node@1.0.0: {}
-
   available-typed-arrays@1.0.7:
     dependencies:
       possible-typed-array-names: 1.0.0
@@ -4569,8 +4466,6 @@ snapshots:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.3
-
-  ci-info@3.9.0: {}
 
   class-variance-authority@0.7.0:
     dependencies:
@@ -5056,10 +4951,6 @@ snapshots:
       locate-path: 6.0.0
       path-exists: 4.0.0
 
-  find-yarn-workspace-root@2.0.0:
-    dependencies:
-      micromatch: 4.0.7
-
   flat-cache@3.2.0:
     dependencies:
       flatted: 3.3.1
@@ -5078,13 +4969,6 @@ snapshots:
       signal-exit: 4.1.0
 
   framework-utils@1.1.0: {}
-
-  fs-extra@9.1.0:
-    dependencies:
-      at-least-node: 1.0.0
-      graceful-fs: 4.2.11
-      jsonfile: 6.1.0
-      universalify: 2.0.1
 
   fs.realpath@1.0.0: {}
 
@@ -5281,8 +5165,6 @@ snapshots:
     dependencies:
       has-tostringtag: 1.0.2
 
-  is-docker@2.2.1: {}
-
   is-extglob@2.1.1: {}
 
   is-finalizationregistry@1.0.2:
@@ -5349,10 +5231,6 @@ snapshots:
       call-bind: 1.0.7
       get-intrinsic: 1.2.4
 
-  is-wsl@2.2.0:
-    dependencies:
-      is-docker: 2.2.1
-
   isarray@2.0.5: {}
 
   isexe@2.0.0: {}
@@ -5408,24 +5286,9 @@ snapshots:
 
   json-stable-stringify-without-jsonify@1.0.1: {}
 
-  json-stable-stringify@1.1.1:
-    dependencies:
-      call-bind: 1.0.7
-      isarray: 2.0.5
-      jsonify: 0.0.1
-      object-keys: 1.1.1
-
   json5@1.0.2:
     dependencies:
       minimist: 1.2.8
-
-  jsonfile@6.1.0:
-    dependencies:
-      universalify: 2.0.1
-    optionalDependencies:
-      graceful-fs: 4.2.11
-
-  jsonify@0.0.1: {}
 
   jsx-ast-utils@3.3.5:
     dependencies:
@@ -5446,10 +5309,6 @@ snapshots:
   keyv@4.5.4:
     dependencies:
       json-buffer: 3.0.1
-
-  klaw-sync@6.0.0:
-    dependencies:
-      graceful-fs: 4.2.11
 
   language-subtag-registry@0.3.23: {}
 
@@ -5618,11 +5477,6 @@ snapshots:
     dependencies:
       wrappy: 1.0.2
 
-  open@7.4.2:
-    dependencies:
-      is-docker: 2.2.1
-      is-wsl: 2.2.0
-
   optics-ts@2.4.1: {}
 
   optionator@0.9.4:
@@ -5633,8 +5487,6 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
       word-wrap: 1.2.5
-
-  os-tmpdir@1.0.2: {}
 
   overlap-area@1.1.0:
     dependencies:
@@ -5653,24 +5505,6 @@ snapshots:
   parent-module@1.0.1:
     dependencies:
       callsites: 3.1.0
-
-  patch-package@8.0.0:
-    dependencies:
-      '@yarnpkg/lockfile': 1.1.0
-      chalk: 4.1.2
-      ci-info: 3.9.0
-      cross-spawn: 7.0.3
-      find-yarn-workspace-root: 2.0.0
-      fs-extra: 9.1.0
-      json-stable-stringify: 1.1.1
-      klaw-sync: 6.0.0
-      minimist: 1.2.8
-      open: 7.4.2
-      rimraf: 2.7.1
-      semver: 7.6.2
-      slash: 2.0.0
-      tmp: 0.0.33
-      yaml: 2.4.5
 
   path-exists@4.0.0: {}
 
@@ -5936,10 +5770,6 @@ snapshots:
 
   reusify@1.0.4: {}
 
-  rimraf@2.7.1:
-    dependencies:
-      glob: 7.2.3
-
   rimraf@3.0.2:
     dependencies:
       glob: 7.2.3
@@ -6016,8 +5846,6 @@ snapshots:
       object-inspect: 1.13.2
 
   signal-exit@4.1.0: {}
-
-  slash@2.0.0: {}
 
   slash@3.0.0: {}
 
@@ -6191,10 +6019,6 @@ snapshots:
 
   tiny-warning@1.0.3: {}
 
-  tmp@0.0.33:
-    dependencies:
-      os-tmpdir: 1.0.2
-
   to-regex-range@5.0.1:
     dependencies:
       is-number: 7.0.0
@@ -6262,8 +6086,6 @@ snapshots:
       has-bigints: 1.0.2
       has-symbols: 1.0.3
       which-boxed-primitive: 1.0.2
-
-  universalify@2.0.1: {}
 
   uri-js@4.4.1:
     dependencies:
