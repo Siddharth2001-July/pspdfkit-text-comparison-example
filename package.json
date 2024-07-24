@@ -6,13 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "patch-package"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@baseline-ui/core": "0.22.0",
-    "@baseline-ui/recipes": "0.22.0",
-    "@baseline-ui/tokens": "0.22.0",
+    "@baseline-ui/core": "0.23.0",
+    "@baseline-ui/recipes": "0.23.0",
+    "@baseline-ui/tokens": "0.23.0",
     "next": "14.2.5",
     "patch-package": "^8.0.0",
     "pspdfkit": "^2024.4.0",
@@ -25,5 +24,12 @@
     "postcss": "^8.4.39",
     "postcss-import": "^16.1.0",
     "tailwindcss": "^3.4.4"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@react-aria/utils@3.24.1": "patches/@react-aria__utils@3.24.1.patch",
+      "@react-aria/focus@3.17.1": "patches/@react-aria__focus@3.17.1.patch",
+      "@react-aria/interactions@3.21.3": "patches/@react-aria__interactions@3.21.3.patch"
+    }
   }
 }
