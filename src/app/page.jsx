@@ -1,6 +1,9 @@
 "use client";
 
 import {useEffect, useRef, useState} from "react";
+import Script from "next/script";
+import ChatWidget from "./chat";
+
 
 export default function Home() {
   const originalContainerRef = useRef(null);
@@ -228,6 +231,7 @@ export default function Home() {
   }
 
   return (
+    <>
     <div>
       <div className="m-4 grid grid-cols-12 h-100">
         <div className="min-h-fit col-span-5 border-1">
@@ -265,5 +269,21 @@ export default function Home() {
         </div>
       </div>
     </div>
+   
+   {/* For Adding widget */}
+    <div>
+    <iframe src="..."></iframe>
+    <button id="trigger-btn"></button>
+  </div>
+  <Script src="/chat-widget.js"></Script>
+  <Script>{`
+  window.onload = function() {
+      ChatWidget.init("xx-slkUdka819...");
+  };
+  `}</Script>
+
+
+
+  </>
   );
 }
