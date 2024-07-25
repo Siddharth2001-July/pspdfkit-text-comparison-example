@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import "@baseline-ui/tokens/dist/index.css";
+@import "@baseline-ui/core/dist/index.css";
+@import "@baseline-ui/recipes/dist/index.css";
