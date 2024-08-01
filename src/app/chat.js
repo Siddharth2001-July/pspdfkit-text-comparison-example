@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useRef, useState } from "react";
 
 export default function ChatWidget() {
@@ -13,33 +14,40 @@ export default function ChatWidget() {
         "Need help with the document comparison ? Ask me anything, I'm here to help!",
     },
   ];
+
+  const apiReqMessage = async (coversation, newMessage) => {
+    // You can send your api req here. Currently it responds with static string message.
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve("You are right. I'm here to help. What do you want to know?");
+      }, 2000);
+    });
+  }
+
   const [messages, setMessages] = useState(intialMesages);
 
-  const handleSubmitMessage = (e) => {
+  const handleSubmitMessage = async (e) => {
     e.preventDefault();
-    const message = e.target.message.value;
-    if (!message) {
+    const input = e.target.message.value;
+    if (!input) {
       return;
     }
+    const newMessage = {role:"user", content: input};
 
-    setMessages([...messages, { role: "user", content: message }]);
+    setMessages([...messages, newMessage]);
     e.target.message.value = "";
     setTimeout(() => {
       scrollTargetRef.current.scrollIntoView({ behavior: "smooth" });
     }, 100);
 
     // Simulate bot response
-    setTimeout(() => {
-    setMessages([...messages,{ role: "user", content: message }, { role: "bot", content: "You are right." }]);
-    scrollTargetRef.current.scrollIntoView({ behavior: "smooth" });
-  }, 2000);
-  };
+    const resMesage = await apiReqMessage(messages, newMessage);
 
-  useEffect(() => {
-    setTimeout(()=>{
-      setMessages([...messages, { role: "bot", content: "I'm a bot, I'm here to help you with the document comparison." }]);
-    }, 2000)
-  }, []);
+    setMessages([...messages, newMessage, { role: "bot", content: resMesage }]);
+    setTimeout(() => {
+      scrollTargetRef.current.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
 
   return (
     <div className="relative bg-white max-w-[400px]">
